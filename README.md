@@ -11,7 +11,7 @@
 ---
 
 <details open>
-<summary><h2>🇬🇧 English (EN) (Default)</h2></summary>
+<summary><h2>en English (EN) (Default)</h2></summary>
 
 **Game Debugger** is a modern, real-time in-engine debug options manager built for **Godot Engine 4**. It allows game developers to dynamically create, reorder, modify, and persist custom debug settings (Boolean toggles, Integer counters, Float sliders, String inputs, Enum dropdowns, and Array list items) directly within the Godot editor and project settings.
 
