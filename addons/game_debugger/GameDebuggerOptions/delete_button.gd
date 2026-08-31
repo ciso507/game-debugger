@@ -14,6 +14,17 @@ func _ready() -> void:
 	if is_instance_valid(button) and not button.mouse_exited.is_connected(_on_button_mouse_exited):
 		button.mouse_exited.connect(_on_button_mouse_exited)
 
+	var mv = get_main_view()
+	if is_instance_valid(mv) and "current_language" in mv:
+		apply_language(mv.get("current_language"))
+	else:
+		apply_language("EN")
+
+
+func apply_language(lang_code: String) -> void:
+	if is_instance_valid(button):
+		button.tooltip_text = "Eliminar Configuración" if lang_code == "ES" else "Delete Setting"
+
 
 func get_main_view() -> Node:
 	var parent_option = get_parent()

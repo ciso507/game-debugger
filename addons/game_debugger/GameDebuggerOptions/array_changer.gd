@@ -32,6 +32,21 @@ func _enter_tree() -> void:
 	if not update_button.pressed.is_connected(update_info):
 		update_button.pressed.connect(update_info)
 
+	if is_instance_valid(main_view) and "current_language" in main_view:
+		apply_language(main_view.get("current_language"))
+	else:
+		apply_language("EN")
+
+
+func apply_language(lang_code: String) -> void:
+	update_button = $UpdateButton if has_node("UpdateButton") else update_button
+	text_edit = $TextEdit if has_node("TextEdit") else text_edit
+	if is_instance_valid(update_button):
+		update_button.text = "Actualizar" if lang_code == "ES" else "Update"
+	if is_instance_valid(text_edit):
+		text_edit.placeholder_text = "Ingrese elementos..." if lang_code == "ES" else "Enter items..."
+		text_edit.tooltip_text = "Ingrese elementos separados por comas o líneas" if lang_code == "ES" else "Enter items separated by commas or newlines"
+
 
 
 func _safe_assign_main_view() -> void:

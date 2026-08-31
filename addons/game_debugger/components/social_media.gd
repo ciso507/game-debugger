@@ -14,12 +14,30 @@ const REDDIT_URL = "https://www.reddit.com/u/Ciso507/s/4LknXFIVvX"
 @onready var reddit_icon: TextureRect = $VBoxContainer/TextureRect4
 
 
+var current_language: String = "EN"
+
+
 func _ready() -> void:
+	if is_inside_tree():
+		var mvs = get_tree().get_nodes_in_group("main_view")
+		if mvs.size() > 0 and "current_language" in mvs[0]:
+			current_language = mvs[0].get("current_language")
 	_setup_icon(youtube_icon, YOUTUBE_URL, "YouTube")
 	_setup_icon(x_icon, X_URL, "X (Twitter)")
 	_setup_icon(tiktok_icon, TIKTOK_URL, "TikTok")
 	_setup_icon(instagram_icon, INSTAGRAM_URL, "Instagram")
 	_setup_icon(reddit_icon, REDDIT_URL, "Reddit")
+	apply_language(current_language)
+
+
+func apply_language(lang_code: String) -> void:
+	current_language = lang_code
+	var prefix = "Sígueme en: " if current_language == "ES" else "Follow me on: "
+	if is_instance_valid(youtube_icon): youtube_icon.tooltip_text = prefix + "YouTube"
+	if is_instance_valid(x_icon): x_icon.tooltip_text = prefix + "X (Twitter)"
+	if is_instance_valid(tiktok_icon): tiktok_icon.tooltip_text = prefix + "TikTok"
+	if is_instance_valid(instagram_icon): instagram_icon.tooltip_text = prefix + "Instagram"
+	if is_instance_valid(reddit_icon): reddit_icon.tooltip_text = prefix + "Reddit"
 
 
 func _setup_icon(icon: TextureRect, url: String, platform_name: String) -> void:
@@ -28,7 +46,8 @@ func _setup_icon(icon: TextureRect, url: String, platform_name: String) -> void:
 
 	icon.mouse_filter = Control.MOUSE_FILTER_STOP
 	icon.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-	icon.tooltip_text = "Follow me on: " + platform_name
+	var prefix = "Sígueme en: " if current_language == "ES" else "Follow me on: "
+	icon.tooltip_text = prefix + platform_name
 
 
 	if not icon.gui_input.is_connected(_on_icon_gui_input.bind(url)):

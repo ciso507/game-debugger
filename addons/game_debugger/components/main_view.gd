@@ -63,6 +63,35 @@ func _enter_tree() -> void:
 
 
 const STEAM_WISHLIST_URL = "https://store.steampowered.com/app/2507500/Bounty_Hunters/"
+const GITHUB_DOCS_URL = "https://github.com/ciso507/game-debugger"
+const LANG_SETTING_FILE = "user://language_setting.txt"
+var current_language: String = "EN"
+
+
+func save_language_setting(lang: String) -> void:
+	var f = FileAccess.open(LANG_SETTING_FILE, FileAccess.WRITE)
+	if f:
+		f.store_string(lang)
+
+
+func load_language_setting() -> String:
+	if FileAccess.file_exists(LANG_SETTING_FILE):
+		var f = FileAccess.open(LANG_SETTING_FILE, FileAccess.READ)
+		if f:
+			var content = f.get_as_text().strip_edges()
+			if content == "ES" or content == "EN":
+				return content
+	return "EN"
+
+
+func _on_language_option_button_item_selected(index: int) -> void:
+	current_language = "ES" if index == 1 else "EN"
+	save_language_setting(current_language)
+	apply_language(current_language)
+
+
+func _on_docs_button_pressed() -> void:
+	OS.shell_open(GITHUB_DOCS_URL)
 
 
 func _ready() -> void:
@@ -76,9 +105,104 @@ func _ready() -> void:
 		var info_btn = get_node("%InfoButton") as Button
 		if is_instance_valid(info_btn) and not info_btn.pressed.is_connected(_on_info_button_pressed):
 			info_btn.pressed.connect(_on_info_button_pressed)
+	if has_node("%DocsButton"):
+		var docs_btn = get_node("%DocsButton") as Button
+		if is_instance_valid(docs_btn) and not docs_btn.pressed.is_connected(_on_docs_button_pressed):
+			docs_btn.pressed.connect(_on_docs_button_pressed)
+
+	current_language = load_language_setting()
+	var lang_opt = get_node_or_null("%LanguageOptionButton") as OptionButton
+	if is_instance_valid(lang_opt):
+		lang_opt.selected = 1 if current_language == "ES" else 0
+		if not lang_opt.item_selected.is_connected(_on_language_option_button_item_selected):
+			lang_opt.item_selected.connect(_on_language_option_button_item_selected)
 
 	_setup_main_banner_wishlist()
+	apply_language(current_language)
 	call_deferred("_apply_panning_and_clamping")
+
+
+func apply_language(lang_code: String) -> void:
+	current_language = lang_code
+	var is_es = (current_language == "ES")
+
+	# 1. Language selector
+	var lang_opt = get_node_or_null("%LanguageOptionButton") as OptionButton
+	if is_instance_valid(lang_opt):
+		lang_opt.selected = 1 if is_es else 0
+		lang_opt.tooltip_text = "Seleccionar Idioma" if is_es else "Select Language"
+
+	var lang_lbl = get_node_or_null("%LanguageLabel") as Label
+	if is_instance_valid(lang_lbl):
+		lang_lbl.text = "🌐 Idioma:" if is_es else "🌐 Language:"
+
+	# 2. Top Toolbar
+	var docs_btn = get_node_or_null("%DocsButton") as Button
+	if is_instance_valid(docs_btn):
+		docs_btn.text = "Documentación" if is_es else "Docs"
+		docs_btn.tooltip_text = "Abrir Documentación" if is_es else "Open Documentation"
+
+	var support_btn = get_node_or_null("%SupportButton") as Button
+	if is_instance_valid(support_btn):
+		support_btn.text = "Patrocinar" if is_es else "Sponsor"
+		support_btn.tooltip_text = "Apoyar Dialogue Manager" if is_es else "Support Dialogue Manager"
+
+	var test_btn = get_node_or_null("%TestLineButton") as Button
+	if is_instance_valid(test_btn):
+		test_btn.tooltip_text = "Probar diálogo desde la línea actual" if is_es else "Test dialogue from current line"
+
+	# 3. Banner wishlist tooltip
+	var mi = get_node_or_null("MainCenterContainer/PanelContainer/MainImage") as Control
+	if is_instance_valid(mi):
+		_update_banner_tooltips(mi, is_es)
+
+	# 4. Action buttons
+	var new_setting_btn = get_node_or_null("%NewSettingButton") as Button
+	if is_instance_valid(new_setting_btn):
+		new_setting_btn.text = "Crear Nueva Configuración..." if is_es else "Create New Setting..."
+
+	var reload_btn = get_node_or_null("%ReloadButton") as Button
+	if is_instance_valid(reload_btn):
+		reload_btn.text = "Recargar Addon" if is_es else "Reload Addon"
+
+	var info_btn = get_node_or_null("%InfoButton") as Button
+	if is_instance_valid(info_btn):
+		info_btn.text = "Información..." if is_es else "Info..."
+
+	# 5. Fold button
+	var fold_btn = get_node_or_null("%SettingsFoldButton") as Button
+	if is_instance_valid(fold_btn):
+		fold_btn.tooltip_text = "Alternar lista de configuraciones" if is_es else "Toggle settings list"
+
+	# 6. Info Panel
+	_update_info_panel_language(is_es)
+
+	# 7. SettingResource creator panel
+	if is_instance_valid(setting_resource_node) and setting_resource_node.has_method("apply_language"):
+		setting_resource_node.apply_language(current_language)
+
+	# 8. Array changers
+	if is_inside_tree():
+		for ac in get_tree().get_nodes_in_group("array_changer"):
+			if is_instance_valid(ac) and ac.has_method("apply_language"):
+				ac.apply_language(current_language)
+
+		# 9. Social Media
+		for sm in get_tree().get_nodes_in_group("social_media"):
+			if is_instance_valid(sm) and sm.has_method("apply_language"):
+				sm.apply_language(current_language)
+
+		# 10. Delete buttons
+		for db in get_tree().get_nodes_in_group("delete_group"):
+			if is_instance_valid(db) and db.has_method("apply_language"):
+				db.apply_language(current_language)
+
+
+func _update_banner_tooltips(node: Node, is_es: bool) -> void:
+	if node is Control:
+		(node as Control).tooltip_text = "¡Añade Bounty Hunters a tu lista de deseados en Steam!" if is_es else "Wishlist Bounty Hunters on Steam!"
+	for child in node.get_children():
+		_update_banner_tooltips(child, is_es)
 
 
 func _setup_main_banner_wishlist() -> void:
@@ -92,7 +216,7 @@ func _setup_banner_input_recursive(node: Node) -> void:
 		var ctrl = node as Control
 		ctrl.mouse_filter = Control.MOUSE_FILTER_STOP
 		ctrl.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		ctrl.tooltip_text = "Wishlist Bounty Hunters on Steam!"
+		ctrl.tooltip_text = "¡Añade Bounty Hunters a tu lista de deseados en Steam!" if current_language == "ES" else "Wishlist Bounty Hunters on Steam!"
 		if not ctrl.gui_input.is_connected(_on_main_banner_gui_input):
 			ctrl.gui_input.connect(_on_main_banner_gui_input)
 
@@ -109,7 +233,6 @@ func _on_main_banner_gui_input(event: InputEvent) -> void:
 		if event.pressed:
 			OS.shell_open(STEAM_WISHLIST_URL)
 			get_viewport().set_input_as_handled()
-
 
 
 var info_panel_node: PanelContainer = null
@@ -153,7 +276,8 @@ func _setup_info_panel() -> void:
 	vbox.add_child(header_hbox)
 
 	var title_lbl = Label.new()
-	title_lbl.text = "📖 Game Debugger Guide"
+	title_lbl.name = "InfoTitleLabel"
+	title_lbl.text = "📖 Guía de Game Debugger" if current_language == "ES" else "📖 Game Debugger Guide"
 	title_lbl.add_theme_font_size_override("font_size", 15)
 	title_lbl.add_theme_color_override("font_color", Color(0.85, 0.75, 1.0, 1.0))
 	title_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -175,10 +299,42 @@ func _setup_info_panel() -> void:
 	vbox.add_child(scroll)
 
 	var content_lbl = RichTextLabel.new()
+	content_lbl.name = "InfoContentLabel"
 	content_lbl.bbcode_enabled = true
 	content_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content_lbl.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	content_lbl.text = """[color=#b895ff][b]1. ➕ Create Custom Settings[/b][/color]
+	scroll.add_child(content_lbl)
+
+	add_child(info_panel_node)
+	_update_info_panel_language(current_language == "ES")
+
+
+func _update_info_panel_language(is_es: bool) -> void:
+	if not is_instance_valid(info_panel_node):
+		return
+	var title_lbl = info_panel_node.find_child("InfoTitleLabel", true, false) as Label
+	if is_instance_valid(title_lbl):
+		title_lbl.text = "📖 Guía de Game Debugger" if is_es else "📖 Game Debugger Guide"
+
+	var content_lbl = info_panel_node.find_child("InfoContentLabel", true, false) as RichTextLabel
+	if is_instance_valid(content_lbl):
+		if is_es:
+			content_lbl.text = """[color=#b895ff][b]1. ➕ Crear Configuraciones Personalizadas[/b][/color]
+Haz clic en [color=#85d8ff]"Crear nueva configuración..."[/color] para abrir el creador.
+Selecciona un [color=#ffd700]Ajuste[/color] (Bool, Int, Float, String, Enum, Array).
+Para [color=#ffd700]Array[/color] o [color=#ffd700]Enum[/color], haz clic en el botón rojo/verde [color=#ff7575]"Crear Elementos..."[/color] para ingresar valores.
+
+[color=#b895ff][b]2. ≡ Arrastrar y Reordenar Configuraciones[/b][/color]
+Mantén presionado el [color=#ffd700]Clic Derecho[/color] en cualquier fila o manipulador [color=#85d8ff]≡[/color] para arrastrar y cambiar posiciones en tiempo real. El orden se guarda automáticamente.
+
+[color=#b895ff][b]3. ✏ Ajustar y Eliminar Configuraciones[/b][/color]
+Modifica los valores en tiempo real. Los cambios se guardan directamente en [color=#85d8ff]ProjectSettings[/color].
+Haz clic en el botón rojo [color=#ff5555]🗑 Eliminar[/color] a la derecha para borrar una configuración permanentemente.
+
+[color=#b895ff][b]4. 🖱 Navegación en el Lienzo[/b][/color]
+Mantén presionado el [color=#ffd700]Clic Izquierdo[/color] en un espacio vacío para mover el lienzo. Doble clic izquierdo para reiniciar la vista."""
+		else:
+			content_lbl.text = """[color=#b895ff][b]1. ➕ Create Custom Settings[/b][/color]
 Click [color=#85d8ff]"Create new custom setting..."[/color] to open the setting creator.
 Select a [color=#ffd700]Preset[/color] (Bool, Int, Float, String, Enum, Array).
 For [color=#ffd700]Array[/color] or [color=#ffd700]Enum[/color], click the red/green [color=#ff7575]"Create Items..."[/color] button to enter values.
@@ -192,9 +348,6 @@ Click the red [color=#ff5555]🗑 Delete Button[/color] on the right to remove a
 
 [color=#b895ff][b]4. 🖱 Canvas Navigation[/b][/color]
 Hold [color=#ffd700]Left Click[/color] on empty space to pan the canvas. Double-click left mouse to reset view."""
-	scroll.add_child(content_lbl)
-
-	add_child(info_panel_node)
 
 
 func _on_info_button_pressed() -> void:
@@ -427,6 +580,7 @@ func update_plugin()->void:
 	if is_instance_valid(main_view_manager):
 		main_view_manager.main_view = self
 		main_view_manager.update_settings()
+	apply_language(current_language)
 
 
 
@@ -640,6 +794,3 @@ func _on_reload_button_pressed() -> void:
 				EditorInterface.call_deferred("set_main_screen_editor", "GameDebugger")
 			return
 	update_plugin()
-
-
-

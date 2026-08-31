@@ -241,7 +241,7 @@ icon = SubResource("ImageTexture_mpdoc")
 flat = true
 
 [node name="Space" type="Control" parent="Margin/Content/CodePanel/Toolbar"]
-custom_minimum_size = Vector2(420, 32)
+custom_minimum_size = Vector2(260, 32)
 layout_mode = 2
 mouse_filter = 2
 
@@ -286,9 +286,40 @@ mouse_filter = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-mouse_filter = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
 text = "Docs"
 flat = true
+
+[node name="Separator6" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LanguageHeader" type="HBoxContainer" parent="Margin/Content/CodePanel/Toolbar"]
+layout_mode = 2
+alignment = 0
+mouse_filter = 2
+
+[node name="LanguageOptionButton" type="OptionButton" parent="Margin/Content/CodePanel/Toolbar/LanguageHeader"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(115, 24)
+layout_mode = 2
+focus_mode = 0
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+item_count = 2
+selected = 0
+popup/item_0/text = "English 🇬🇧"
+popup/item_0/id = 0
+popup/item_1/text = "Español 🇪🇸"
+popup/item_1/id = 1
+
+[node name="Separator7" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+layout_mode = 2
+mouse_filter = 2
 
 [node name="VersionLabel" type="Label" parent="Margin/Content/CodePanel/Toolbar"]
 unique_name_in_owner = true
@@ -710,6 +741,8 @@ offset_bottom = 165.0
 [connection signal="gui_input" from="MainCenterContainer/PanelContainer/MainImage" to="." method="_on_banner_image_gui_input"]
 [connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/NewSettingButton" to="." method="_on_new_setting_button_pressed"]
 [connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/ReloadButton" to="." method="_on_reload_button_pressed"]
+[connection signal="pressed" from="Margin/Content/CodePanel/Toolbar/DocsButton" to="." method="_on_docs_button_pressed"]
+[connection signal="item_selected" from="Margin/Content/CodePanel/Toolbar/LanguageHeader/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
 
 
 

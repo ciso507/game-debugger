@@ -8,9 +8,14 @@
 
 config_version=5
 
+[Game]
+
+Debug/derta=Array[String](["car", "det", "delta", "sync"])
+
 [application]
 
 config/name="GameDebugger"
+run/main_scene="res://addons/game_debugger/examples/example_scene.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]

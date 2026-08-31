@@ -71,13 +71,23 @@ func set_outline_green() -> void:
 		button_.add_theme_stylebox_override("pressed", green_style)
 
 
+var current_language: String = "EN"
+
+
+func apply_language(lang_code: String) -> void:
+	current_language = lang_code
+	button_ = get_child(1) as Button if get_child_count() > 1 else button_
+	if is_instance_valid(button_):
+		button_.text = "Crear Elementos..." if current_language == "ES" else "Create Items..."
+
+
 func array_to_use(string_value: String) -> void:
 	current_array_type = string_value
 	var tag_name = get_child(0)
 	tag_name.text = string_value
 	button_ = get_child(1) as Button
 	if is_instance_valid(button_):
-		button_.text = "Create Items..."
+		button_.text = "Crear Elementos..." if current_language == "ES" else "Create Items..."
 		button_.disabled = false
 	setup_styles()
 	set_outline_red()

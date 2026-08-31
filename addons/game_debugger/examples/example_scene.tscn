@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dl1suwtkl02kw"]
+
+[ext_resource type="Script" uid="uid://drkxr6nnf2dwf" path="res://addons/game_debugger/examples/example_scene.gd" id="1_h3hs4"]
+
+[node name="example_scene" type="Node2D" unique_id=285811434]
+script = ExtResource("1_h3hs4")

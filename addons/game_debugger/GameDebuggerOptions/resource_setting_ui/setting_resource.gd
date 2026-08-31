@@ -94,6 +94,17 @@ var status_label: Label
 var has_user_dragged: bool = false
 
 
+func get_main_view_node() -> Node:
+	if is_instance_valid(main_view):
+		return main_view
+	if is_inside_tree():
+		var list = get_tree().get_nodes_in_group("main_view")
+		if list.size() > 0:
+			main_view = list[0] as MainView
+			return main_view
+	return null
+
+
 func get_default_value_container() -> HBoxContainer:
 	return default_value
 
@@ -416,8 +427,11 @@ func create_hint_string(hint_node: Node, String_value: String = "HintStringArray
 signal cancel_creation(stringer:String)
 
 func _on_create_button_pressed() -> void:
-	if main_view.current_settings == null:
-		main_view.current_settings = []
+	var mv = get_main_view_node()
+	if not is_instance_valid(mv):
+		return
+	if mv.current_settings == null:
+		mv.current_settings = []
 
 	var new_setting: CustomSetting = CustomSetting.new()
 
@@ -428,16 +442,13 @@ func _on_create_button_pressed() -> void:
 	set_property_from_option(usage, new_setting, "usage", res_prop.USAGE)
 	set_property_from_option(hint, new_setting, "hint", res_prop.HINTS)
 
-	main_view.current_settings.push_back(new_setting)
+	mv.current_settings.push_back(new_setting)
 	notify_property_list_changed()
 
 	set_array_type_text_option(new_setting)
-	for i in main_view.current_settings:
-		pass # print(i.name, "adding all of them")
-	pass # print("✅ Added CustomSetting with type:", new_setting.type, "and name:", new_setting.name)
 
-	main_view.save_resources_to_user(main_view.current_settings)
-	main_view.update_plugin()
+	mv.save_resources_to_user(mv.current_settings)
+	mv.update_plugin()
 
 	await get_tree().create_timer(2.5).timeout
 	status_label.text = "reading..."
@@ -499,6 +510,52 @@ func get_gold_explanation_label() -> Label:
 	return gold_explanation_label
 
 
+var current_language: String = "EN"
+
+
+func apply_language(lang_code: String) -> void:
+	current_language = lang_code
+	var is_es = (current_language == "ES")
+
+	var sn_lbl = setting_name.get_node_or_null("Label") if is_instance_valid(setting_name) else null
+	if is_instance_valid(sn_lbl): sn_lbl.text = "Nombre Config" if is_es else "SettingName"
+
+	var pr_lbl = preset.get_node_or_null("OptionLabel") if is_instance_valid(preset) else null
+	if is_instance_valid(pr_lbl): pr_lbl.text = "Ajuste Tipo" if is_es else "Type Preset"
+
+	var tp_lbl = type.get_node_or_null("OptionLabel") if is_instance_valid(type) else null
+	if is_instance_valid(tp_lbl): tp_lbl.text = "Tipo" if is_es else "Type"
+
+	var us_lbl = usage.get_node_or_null("OptionLabel") if is_instance_valid(usage) else null
+	if is_instance_valid(us_lbl): us_lbl.text = "Uso" if is_es else "Usage"
+
+	var ht_lbl = hint.get_node_or_null("OptionLabel") if is_instance_valid(hint) else null
+	if is_instance_valid(ht_lbl): ht_lbl.text = "Sugerencia" if is_es else "Hint"
+
+	var dv_lbl = default_value.get_node_or_null("Label") if is_instance_valid(default_value) else null
+	if is_instance_valid(dv_lbl): dv_lbl.text = "Valor por Defecto" if is_es else "DefaultValue"
+
+	var bv_lbl = bool_value.get_node_or_null("Label") if is_instance_valid(bool_value) else null
+	if is_instance_valid(bv_lbl): bv_lbl.text = "Valor Booleano" if is_es else "BoolValue"
+
+	var av_lbl = array_value.get_node_or_null("Label") if is_instance_valid(array_value) else null
+	if is_instance_valid(av_lbl): av_lbl.text = "Valor de Arreglo" if is_es else "ArrayValue"
+
+	var btn_create = get_node_or_null("CreationButtonContainer/CreateButton") as Button
+	if is_instance_valid(btn_create): btn_create.text = "Crear" if is_es else "Create"
+
+	var btn_reset = get_node_or_null("CreationButtonContainer/ResetButton") as Button
+	if is_instance_valid(btn_reset): btn_reset.text = "Reiniciar" if is_es else "Reset"
+
+	var btn_close = get_node_or_null("CreationButtonContainer/CloseButton") as Button
+	if is_instance_valid(btn_close): btn_close.text = "Cerrar" if is_es else "Close"
+
+	if is_instance_valid(hint_string) and hint_string.has_method("apply_language"):
+		hint_string.apply_language(lang_code)
+
+	validate_setting()
+
+
 var can_create_setting = false
 func validate_setting(new_setting: Resource = null) -> bool:
 	# Get the user input name
@@ -508,26 +565,31 @@ func validate_setting(new_setting: Resource = null) -> bool:
 	status_label = complete_message.get_node("Label")
 	var explanation_lbl = get_gold_explanation_label()
 
+	var mv = get_main_view_node()
+	var current_settings_arr: Array = []
+	if is_instance_valid(mv) and "current_settings" in mv and mv.current_settings != null:
+		current_settings_arr = mv.current_settings
+
 	# Use a default name if empty
 	if suffix_name == "":
-		suffix_name = "Setting_%d" % main_view.current_settings.size()
+		suffix_name = "Setting_%d" % current_settings_arr.size()
 
 	var full_name: String = "Game/Debug/%s" % suffix_name
 
 	var mark_invalid = func(explanation_text: String) -> bool:
-		status_label.text = "Invalid"
+		status_label.text = "Inválido" if current_language == "ES" else "Invalid"
 		status_label.add_theme_color_override("font_color", Color(1.0, 0.35, 0.35, 1.0))
 		explanation_lbl.text = "⚠ " + explanation_text
 		return false
 
 	# --- Check if setting already exists in ProjectSettings ---
 	if ProjectSettings.has_setting(full_name):
-		return mark_invalid.call("Invalid name (already exists in ProjectSettings)")
+		return mark_invalid.call("Nombre inválido (ya existe en ProjectSettings)" if current_language == "ES" else "Invalid name (already exists in ProjectSettings)")
 
 	# --- Check if setting already exists in current_settings ---
-	for s in main_view.current_settings:
+	for s in current_settings_arr:
 		if s and s.name == full_name:
-			return mark_invalid.call("Invalid name (already exists in custom settings)")
+			return mark_invalid.call("Nombre inválido (ya existe en configuraciones)" if current_language == "ES" else "Invalid name (already exists in custom settings)")
 
 	# --- Validate type + hint ---
 	var valid_input: bool = (
@@ -539,7 +601,7 @@ func validate_setting(new_setting: Resource = null) -> bool:
 	)
 
 	if not valid_input:
-		return mark_invalid.call("Invalid input type")
+		return mark_invalid.call("Tipo de entrada inválido" if current_language == "ES" else "Invalid input type")
 
 	# --- Check if plain String requires default value ---
 	if current_type == "String" and current_hint == "None":
@@ -548,7 +610,7 @@ func validate_setting(new_setting: Resource = null) -> bool:
 			var line_edit: LineEdit = dv.get_child(1) as LineEdit
 			if is_instance_valid(line_edit) and line_edit.text.strip_edges() == "":
 				update_string_default_value_style()
-				return mark_invalid.call("Enter a default string value first!")
+				return mark_invalid.call("¡Ingrese un valor por defecto primero!" if current_language == "ES" else "Enter a default string value first!")
 
 	# --- Check if Array / Enum requires item setup ---
 	var requires_array_items: bool = (
@@ -560,13 +622,13 @@ func validate_setting(new_setting: Resource = null) -> bool:
 		if text_edit_main.array_to_use.size() == 0:
 			if is_instance_valid(hint_string) and hint_string.has_method("set_outline_red"):
 				hint_string.set_outline_red()
-			return mark_invalid.call("Click the Red button & add items first!")
+			return mark_invalid.call("¡Haga clic en el botón Rojo e ingrese elementos primero!" if current_language == "ES" else "Click the Red button & add items first!")
 
 	# ✅ Passed validation → Assign name to new setting
 	if new_setting != null:
 		new_setting.name = full_name
 
-	status_label.text = "Valid"
+	status_label.text = "Válido" if current_language == "ES" else "Valid"
 	status_label.add_theme_color_override("font_color", Color(0.35, 1.0, 0.45, 1.0))
 	explanation_lbl.text = ""
 	return true
