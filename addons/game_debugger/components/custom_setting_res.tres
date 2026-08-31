@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CustomSetting" load_steps=2 format=3 uid="uid://dcbbqbqke0th1"]
+
+[ext_resource type="Script" uid="uid://drjouegtbul42" path="res://addons/game_debugger/components/CustomSetting.gd" id="1_ntlvb"]
+
+[resource]
+script = ExtResource("1_ntlvb")
+name = ""
+type = 0
+usage = 6
+hint = 0
+hint_string = Array[String]([])
+default_value = ""
+bool_value = false
+array_value = PackedStringArray()

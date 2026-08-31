@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt67fy1ymsr35"]
+
+[ext_resource type="PackedScene" uid="uid://dqtghrsp4hn5n" path="res://addons/game_debugger/GameDebuggerOptions/GameDebuggerOption.tscn" id="1_x516p"]
+[ext_resource type="Script" path="res://addons/game_debugger/GameDebuggerOptions/resource_setting_ui/hint_string.gd" id="2_j23op"]
+
+[node name="Option" groups=["hint_string_option"] instance=ExtResource("1_x516p")]
+offset_right = 226.0
+script = ExtResource("2_j23op")
+panel_type = "existing"
+
+[node name="HintString" type="Button" parent="." index="0"]
+layout_mode = 2
+mouse_filter = 2
+text = "Option"
+
+[node name="Button" type="Button" parent="." index="1"]
+layout_mode = 2
+disabled = true
+text = "Disabled"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,717 @@
+[gd_scene load_steps=29 format=3 uid="uid://cm7uua3fka03i"]
+
+[ext_resource type="Script" path="res://addons/game_debugger/components/main_view.gd" id="1_ng1b7"]
+[ext_resource type="PackedScene" uid="uid://b2784wy76jds7" path="res://addons/game_debugger/components/project_settings_debug.tscn" id="2_1ukat"]
+[ext_resource type="Script" path="res://addons/game_debugger/components/main_view_manager.gd" id="2_868r2"]
+[ext_resource type="Texture2D" uid="uid://lyhtv7k2xs4j" path="res://addons/game_debugger/assets/doc.png" id="3_2pnx0"]
+[ext_resource type="Texture2D" uid="uid://c0qpwbpg84ouu" path="res://addons/game_debugger/assets/backstabb.png" id="3_k11ff"]
+[ext_resource type="Texture2D" uid="uid://dyco5dlurvp55" path="res://addons/game_debugger/assets/1day_we_all_gonna_die.png" id="4_hxlg2"]
+[ext_resource type="Texture2D" uid="uid://c7a5mo1uednna" path="res://addons/game_debugger/assets/Tower_Blue.png" id="5_bs5my"]
+[ext_resource type="Texture2D" uid="uid://0t10rfas7s47" path="res://addons/game_debugger/assets/greed.png" id="6_hxlg2"]
+[ext_resource type="Texture2D" uid="uid://bfxckm1dkfeuh" path="res://addons/game_debugger/assets/gamedebugger.png" id="8_x0e5q"]
+[ext_resource type="Texture2D" uid="uid://bm856g2l51qy3" path="res://addons/game_debugger/assets/happy_face.png" id="10_8wj7s"]
+[ext_resource type="Texture2D" uid="uid://cjaqtclucktkm" path="res://addons/game_debugger/assets/ent_texts.png" id="11_yn316"]
+[ext_resource type="Texture2D" uid="uid://djp0spxklt70b" path="res://addons/game_debugger/assets/battle.png" id="13_rkxfc"]
+[ext_resource type="Texture2D" uid="uid://dtavxie2tpuii" path="res://addons/game_debugger/assets/battleuiIcons_sword.png" id="14_m7if4"]
+[ext_resource type="Texture2D" uid="uid://dmkq68gskt3ai" path="res://addons/game_debugger/assets/Tiles_A_white.png" id="15_tp58l"]
+[ext_resource type="Script" path="res://addons/game_debugger/components/setting_resource_manager.gd" id="24_yeyvv"]
+[ext_resource type="PackedScene" uid="uid://cp2pjqycu50ia" path="res://addons/game_debugger/GameDebuggerOptions/resource_setting_ui/setting_resource.tscn" id="25_kps53"]
+[ext_resource type="PackedScene" uid="uid://7hcpdqae750s" path="res://addons/game_debugger/GameDebuggerOptions/resource_setting_ui/TextEditOption.tscn" id="27_2pnx0"]
+[ext_resource type="PackedScene" uid="uid://ku6txfclyw5f" path="res://addons/game_debugger/components/SocialMedia.tscn" id="28_2pnx0"]
+
+[sub_resource type="Image" id="Image_4jep0"]
+data = {
+"data": PackedByteArray(255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 42, 255, 90, 90, 0, 255, 94, 94, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 93, 93, 41, 255, 90, 90, 0, 255, 94, 94, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 92, 92, 0, 255, 92, 92, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 93, 93, 44, 255, 91, 91, 0, 255, 91, 91, 42, 255, 91, 91, 42, 255, 93, 93, 0, 255, 91, 91, 45, 255, 93, 93, 44, 255, 91, 91, 0, 255, 91, 91, 42, 255, 91, 91, 42, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0),
+"format": "RGBA8",
+"height": 16,
+"mipmaps": false,
+"width": 16
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_mpdoc"]
+image = SubResource("Image_4jep0")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qtc1l"]
+load_path = "res://.godot/imported/main_pic.png-2d44fb3fa55d51ddc52da5be2d7da7f9.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qq08o"]
+
+[sub_resource type="Animation" id="Animation_jieg6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainTitle/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(848, 166)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainTitle/ColorRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainTitle/ColorRect2:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainTitle/ColorRect2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(859, 166)]
+}
+
+[sub_resource type="Animation" id="Animation_yn316"]
+resource_name = "loop"
+length = 0.45
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainTitle/ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0760981, 0.148737, 0.264037),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(848, 166), Vector2(848, 166), Vector2(848, 180), Vector2(848, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainTitle/ColorRect:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0760981, 0.264037),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(8, 16), Vector2(8, 9), Vector2(8, 27)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainTitle/ColorRect2:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0933931, 0.313616),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(8, 4), Vector2(8, 6), Vector2(8, 11)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainTitle/ColorRect2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0933931, 0.313616),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(859, 166), Vector2(859, 166), Vector2(859, 160)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mq1ht"]
+_data = {
+"RESET": SubResource("Animation_jieg6"),
+"loop": SubResource("Animation_yn316")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynrta"]
+bg_color = Color(0.542737, 0.53883, 0.979547, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pnx0"]
+bg_color = Color(0.639093, 0.637668, 0.91603, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_te57j"]
+bg_color = Color(0.87451, 0.670588, 0.243137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_bg"]
+bg_color = Color(0.08, 0.05, 0.16, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.45, 0.35, 0.7, 0.6)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="MainView" type="Control" groups=["main_view"]]
+
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ng1b7")
+
+[node name="ProjectSettingsDebug" parent="." instance=ExtResource("2_1ukat")]
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+metadata/_edit_layout_mode = 1
+
+[node name="Content" type="HSplitContainer" parent="Margin"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+dragger_visibility = 1
+
+[node name="SidePanel" type="VBoxContainer" parent="Margin/Content"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Toolbar" type="HBoxContainer" parent="Margin/Content/SidePanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CodePanel" type="VBoxContainer" parent="Margin/Content"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+
+[node name="Toolbar" type="HBoxContainer" parent="Margin/Content/CodePanel"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Separator" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Separator2" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TestLineButton" type="Button" parent="Margin/Content/CodePanel/Toolbar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Test dialogue from current line"
+disabled = true
+icon = SubResource("ImageTexture_mpdoc")
+flat = true
+
+[node name="Space" type="Control" parent="Margin/Content/CodePanel/Toolbar"]
+custom_minimum_size = Vector2(420, 32)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Separator4" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Space2" type="Control" parent="Margin/Content/CodePanel/Toolbar"]
+custom_minimum_size = Vector2(15, 32)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Margin/Content/CodePanel/Toolbar/Space2"]
+texture_filter = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.5
+offset_top = 2.0
+offset_right = 504.5
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("3_2pnx0")
+
+[node name="SupportButton" type="Button" parent="Margin/Content/CodePanel/Toolbar"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+tooltip_text = "Support Dialogue Manager"
+text = "Sponsor"
+flat = true
+
+[node name="Separator5" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+visible = false
+layout_mode = 2
+mouse_filter = 2
+
+[node name="DocsButton" type="Button" parent="Margin/Content/CodePanel/Toolbar"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+mouse_filter = 2
+text = "Docs"
+flat = true
+
+[node name="VersionLabel" type="Label" parent="Margin/Content/CodePanel/Toolbar"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.490196)
+layout_mode = 2
+text = "v1.0.0"
+vertical_alignment = 1
+
+[node name="BgCenterContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 151.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BgCenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="Control" type="Control" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 185)
+layout_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(640, 220)
+layout_mode = 2
+color = Color(0.200054, 0.141808, 0.447908, 1)
+
+[node name="Control2" type="Control" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ColorRect8" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.336812, 0.1861, 0.621248, 1)
+
+[node name="Control4" type="Control" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ColorRect6" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(640, 30)
+layout_mode = 2
+color = Color(0.067158, 0.0213244, 0.157403, 1)
+
+[node name="Control3" type="Control" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+
+[node name="ColorRect7" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.067158, 0.0213244, 0.157403, 1)
+
+[node name="Control5" type="Control" parent="BgCenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+
+[node name="MainCenterContainer" type="CenterContainer" parent="."]
+
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 151.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelContainer" type="VBoxContainer" parent="MainCenterContainer"]
+
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="Control2" type="Control" parent="MainCenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MainImage" type="TextureRect" parent="MainCenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(600, 205)
+layout_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 2
+texture = SubResource("CompressedTexture2D_qtc1l")
+expand_mode = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainCenterContainer/PanelContainer/MainImage"]
+layout_mode = 2
+offset_left = 15.0
+offset_top = -2.0
+offset_right = 391.0
+offset_bottom = 158.0
+theme_override_constants/separation = -28
+
+[node name="TextureRect" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("3_k11ff")
+expand_mode = 3
+
+[node name="TextureRect2" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("4_hxlg2")
+
+[node name="TextureRect3" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("6_hxlg2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainCenterContainer/PanelContainer/MainImage"]
+layout_mode = 0
+offset_left = 422.0
+offset_top = -45.0
+offset_right = 570.0
+offset_bottom = 90.0
+
+[node name="SpriteBGs" type="Node2D" parent="MainCenterContainer/PanelContainer"]
+position = Vector2(-341, -113)
+
+[node name="TowerBlue" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+z_index = 5
+texture_filter = 1
+position = Vector2(808, 254)
+texture = ExtResource("5_bs5my")
+
+[node name="HappyFace" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+z_index = 5
+texture_filter = 1
+position = Vector2(810, 270)
+texture = ExtResource("10_8wj7s")
+
+[node name="EntTexts" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+texture_filter = 1
+position = Vector2(800, 151)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("11_yn316")
+
+[node name="MainTitle" type="Node2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+
+[node name="Gamedebugger" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+visible = false
+texture_filter = 2
+material = SubResource("ShaderMaterial_qq08o")
+position = Vector2(553, 439.455)
+scale = Vector2(1.22699, 1.5)
+texture = ExtResource("8_x0e5q")
+
+[node name="TitleAnime" type="AnimationPlayer" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+unique_name_in_owner = true
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_mq1ht")
+}
+autoplay = "loop"
+
+[node name="ColorRect" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+offset_left = 848.0
+offset_top = 166.0
+offset_right = 856.0
+offset_bottom = 182.0
+color = Color(0.466726, 0.815066, 0.855428, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+offset_left = 859.0
+offset_top = 166.0
+offset_right = 867.0
+offset_bottom = 170.0
+color = Color(0.684069, 0.312633, 0.815071, 1)
+
+[node name="Battle" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+z_index = 5
+texture_filter = 1
+position = Vector2(731, 250)
+texture = ExtResource("13_rkxfc")
+
+[node name="BattleuiIconsSword" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+texture_filter = 1
+position = Vector2(694, 230)
+texture = ExtResource("14_m7if4")
+
+[node name="TilesAWhite" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+z_index = 5
+position = Vector2(906, 303)
+scale = Vector2(0.08, 0.08)
+texture = ExtResource("15_tp58l")
+
+[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+color = Color(0.684069, 0.312633, 0.815071, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+color = Color(0.684069, 0.312633, 0.815071, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+z_index = -1
+color = Color(0.067158, 0.0213244, 0.157403, 1)
+
+[node name="Control" type="Control" parent="MainCenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainCenterContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 5
+
+[node name="NewSettingButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+text = "Create New Setting..."
+icon = ExtResource("14_m7if4")
+
+[node name="ReloadButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+text = "Reload Addon"
+icon = ExtResource("14_m7if4")
+
+[node name="Control" type="Control" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="InfoButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+text = "Info..."
+icon = ExtResource("14_m7if4")
+
+[node name="MainViewManager" type="Control" parent="MainCenterContainer"]
+z_index = 20
+z_as_relative = false
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("2_868r2")
+
+[node name="SettingsPanelBG" type="Panel" parent="MainCenterContainer/MainViewManager"]
+layout_mode = 0
+offset_left = -292.0
+offset_top = -256.0
+offset_right = 47.0
+offset_bottom = -96.0
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_settings_bg")
+
+[node name="ScrollContainerz" type="ScrollContainer" parent="MainCenterContainer/MainViewManager"]
+z_index = 60
+z_as_relative = false
+layout_mode = 0
+offset_left = -287.0
+offset_top = -251.0
+offset_right = 42.0
+offset_bottom = -101.0
+scale = Vector2(0.8, 0.8)
+
+
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MainCenterContainer/MainViewManager/ScrollContainerz"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SettingsFoldButton" type="Button" parent="MainCenterContainer/MainViewManager"]
+unique_name_in_owner = true
+z_index = 100
+z_as_relative = false
+custom_minimum_size = Vector2(24, 20)
+layout_mode = 0
+offset_left = -140.0
+offset_top = -105.0
+offset_right = -116.0
+offset_bottom = -85.0
+scale = Vector2(0.8, 0.8)
+focus_mode = 0
+mouse_filter = 0
+theme_override_colors/font_color = Color(0.75, 0.82, 0.95, 0.85)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.5, 0.7, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+flat = true
+text = "▼"
+
+[node name="SpriteBGs" type="Node2D" parent="MainCenterContainer/MainViewManager"]
+
+[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/MainViewManager/SpriteBGs"]
+offset_left = -289.0
+offset_top = -268.0
+offset_right = -157.0
+offset_bottom = -266.0
+color = Color(0.684069, 0.312633, 0.815071, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MainCenterContainer/MainViewManager/SpriteBGs"]
+offset_left = -141.0
+offset_top = -268.0
+offset_right = -129.0
+offset_bottom = -266.0
+color = Color(0.684069, 0.312633, 0.815071, 1)
+
+[node name="SettingCreatorContainer" type="Control" parent="."]
+
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SettingResourceManager" type="Control" parent="SettingCreatorContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource("24_yeyvv")
+
+
+[node name="SettingResource" parent="SettingCreatorContainer/SettingResourceManager" instance=ExtResource("25_kps53")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = -160.0
+offset_top = -180.0
+offset_right = 140.0
+offset_bottom = 260.0
+
+[node name="ColorRect" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="0"]
+offset_left = 5.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = -1.0
+
+[node name="VBoxContainer" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="1"]
+offset_left = 11.0
+offset_top = 7.77783
+offset_right = 393.0
+offset_bottom = 320.0
+
+[node name="CreationButtonContainer" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="2"]
+offset_left = 27.7778
+offset_top = 330.0
+offset_right = 292.778
+offset_bottom = 370.0
+
+[node name="CompleteMessage" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="3"]
+offset_left = 65.5556
+offset_top = 380.0
+offset_right = 105.556
+offset_bottom = 420.0
+
+
+[node name="TextEditOption" parent="SettingCreatorContainer/SettingResourceManager" instance=ExtResource("27_2pnx0")]
+visible = false
+modulate = Color(0.607843, 0.917647, 1, 1)
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 150.0
+offset_top = -180.0
+offset_right = 400.0
+offset_bottom = 260.0
+
+
+[node name="SocialIconsContainer" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 151.0
+offset_top = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Control" type="Control" parent="SocialIconsContainer"]
+layout_mode = 2
+
+[node name="SocialMedia" parent="SocialIconsContainer/Control" instance=ExtResource("28_2pnx0")]
+offset_left = 357.0
+offset_top = -117.0
+offset_right = 409.0
+offset_bottom = 165.0
+
+[connection signal="theme_changed" from="." to="." method="_on_main_view_theme_changed"]
+[connection signal="visibility_changed" from="." to="." method="_on_main_view_visibility_changed"]
+[connection signal="pressed" from="Margin/Content/CodePanel/Toolbar/TestLineButton" to="." method="_on_test_line_button_pressed"]
+[connection signal="pressed" from="Margin/Content/CodePanel/Toolbar/SupportButton" to="." method="_on_support_button_pressed"]
+[connection signal="gui_input" from="MainCenterContainer/PanelContainer/MainImage" to="." method="_on_banner_image_gui_input"]
+[connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/NewSettingButton" to="." method="_on_new_setting_button_pressed"]
+[connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/ReloadButton" to="." method="_on_reload_button_pressed"]
+
+
+
+
+

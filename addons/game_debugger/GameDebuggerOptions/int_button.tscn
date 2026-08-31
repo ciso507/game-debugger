@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://can7j7y1gbdbw"]
+
+[ext_resource type="Script" path="res://addons/game_debugger/GameDebuggerOptions/int_button.gd" id="1_yb1c2"]
+
+[node name="Option" type="HBoxContainer"]
+offset_right = 163.0
+offset_bottom = 31.0
+mouse_filter = 2
+script = ExtResource("1_yb1c2")
+
+[node name="IntString" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+mouse_filter = 0
+theme_override_font_sizes/font_size = 12
+text = "Option"
+
+
+[node name="SpinBox" type="SpinBox" parent="."]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+max_value = 99999.0
+

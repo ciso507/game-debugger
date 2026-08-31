@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://76hxtlav1jbe"]
+
+[ext_resource type="Script" uid="uid://cqu1cdyqd3apn" path="res://addons/game_debugger/components/test_scene.gd" id="1_4c520"]
+[ext_resource type="Script" uid="uid://drjouegtbul42" path="res://addons/game_debugger/components/CustomSetting.gd" id="2_aaxxc"]
+
+[sub_resource type="Resource" id="Resource_3cd4w"]
+script = ExtResource("2_aaxxc")
+name = "Game/Debug"
+type = 0
+usage = 6
+hint = 0
+hint_string = Array[String]([])
+default_value = "false"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_m2xso"]
+script = ExtResource("2_aaxxc")
+name = "Game/Debug/CombatDebug"
+type = 1
+usage = 6
+hint = 0
+hint_string = Array[String]([])
+default_value = "false"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_1hnm2"]
+script = ExtResource("2_aaxxc")
+name = "Game/Debug/ForceUnitType"
+type = 4
+usage = 6
+hint = 2
+hint_string = Array[String](["Default", "Hero", "Clown", "Undead"])
+default_value = "Default"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_8roa8"]
+script = ExtResource("2_aaxxc")
+name = "Game/Debug/SkipPhase"
+type = 4
+usage = 6
+hint = 2
+hint_string = Array[String](["None", "Poker", "Combat"])
+default_value = "None"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[node name="TestScene" type="Node"]
+script = ExtResource("1_4c520")
+settings_res = Array[ExtResource("2_aaxxc")]([SubResource("Resource_3cd4w"), SubResource("Resource_m2xso"), SubResource("Resource_1hnm2"), SubResource("Resource_8roa8")])

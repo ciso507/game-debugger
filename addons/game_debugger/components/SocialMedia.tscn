@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://ku6txfclyw5f"]
+
+[ext_resource type="Texture2D" uid="uid://cosw2yeb1pqo3" path="res://addons/game_debugger/assets/social_icons/icons8-youtube-50.png" id="1_rsjag"]
+[ext_resource type="Texture2D" uid="uid://dyrk2aiupm0kp" path="res://addons/game_debugger/assets/social_icons/icons8-x-50.png" id="2_b6wd7"]
+[ext_resource type="Texture2D" uid="uid://cue73r72437ha" path="res://addons/game_debugger/assets/social_icons/icons8-tiktok-50.png" id="3_omcgl"]
+[ext_resource type="Texture2D" uid="uid://b4l7thkdygnkq" path="res://addons/game_debugger/assets/social_icons/icons8-instagram-50.png" id="4_pj8tg"]
+[ext_resource type="Texture2D" uid="uid://xu3pweeeetcf" path="res://addons/game_debugger/assets/social_icons/icons8-reddit-50.png" id="5_rdr71"]
+[ext_resource type="Script" path="res://addons/game_debugger/components/social_media.gd" id="6_smeda"]
+
+
+[node name="SocialMedia" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 52.0
+offset_bottom = 282.0
+scale = Vector2(0.6, 0.6)
+mouse_filter = 2
+script = ExtResource("6_smeda")
+
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("1_rsjag")
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("2_b6wd7")
+
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("3_omcgl")
+
+[node name="TextureRect5" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("4_pj8tg")
+
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("5_rdr71")

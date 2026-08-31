@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://cj7ipufsgreao"]
+
+[ext_resource type="PackedScene" uid="uid://dqtghrsp4hn5n" path="res://addons/game_debugger/GameDebuggerOptions/GameDebuggerOption.tscn" id="1_60jeq"]
+[ext_resource type="Script" path="res://addons/game_debugger/GameDebuggerOptions/check_button_option.gd" id="2_y5yf7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yu6be"]
+bg_color = Color(0.443976, 0.180722, 0.587037, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m1eks"]
+bg_color = Color(0.310647, 0.380813, 0.790575, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rem8d"]
+bg_color = Color(0.261878, 0.0506552, 0.501052, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5yf7"]
+bg_color = Color(0.301108, 0.309076, 0.76387, 1)
+
+[node name="Option" instance=ExtResource("1_60jeq")]
+theme_override_constants/separation = 1
+script = ExtResource("2_y5yf7")
+panel_type = "existing"
+
+[node name="CheckButton" type="CheckButton" parent="." index="0"]
+custom_minimum_size = Vector2(0, 26)
+z_index = 65
+z_as_relative = false
+layout_mode = 2
+
+theme_override_font_sizes/font_size = 12
+theme_override_colors/font_disabled_color = Color(0.772766, 0.656167, 0.881157, 1)
+
+theme_override_colors/font_hover_pressed_color = Color(0.880705, 0.872294, 0.701169, 1)
+theme_override_colors/font_hover_color = Color(0.64421, 0.259512, 0.436148, 1)
+theme_override_colors/font_color = Color(0.821789, 0.821789, 0.821789, 1)
+theme_override_colors/font_pressed_color = Color(0.819202, 0.643104, 0.347697, 1)
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_yu6be")
+theme_override_styles/hover = SubResource("StyleBoxFlat_m1eks")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rem8d")
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5yf7")
+action_mode = 0
+text = "Option"
+
+[node name="ColorRect" type="ColorRect" parent="CheckButton" index="0"]
+visible = false
+z_as_relative = false
+custom_minimum_size = Vector2(140, 2)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.155083, 0.116627, 0.267, 1)
+
+[node name="Label" type="Label" parent="CheckButton/ColorRect" index="0"]
+layout_mode = 2
+offset_left = 7.0
+offset_right = 128.0
+offset_bottom = 23.0
+text = "Combat Debug"
+
+[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

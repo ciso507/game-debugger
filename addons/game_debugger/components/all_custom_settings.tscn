@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://qdv8mlxxbs75"]
+
+[ext_resource type="Script" uid="uid://drjouegtbul42" path="res://addons/game_debugger/components/CustomSetting.gd" id="2_45x0v"]
+
+[sub_resource type="GDScript" id="GDScript_amu7p"]
+script/source = "@tool
+class_name AllCustomSettings extends Node
+
+
+
+@export var settings_res: Array[CustomSetting]
+"
+
+[sub_resource type="Resource" id="Resource_1a1c5"]
+script = ExtResource("2_45x0v")
+name = "Game/Debug"
+type = 0
+usage = 6
+hint = 0
+hint_string = Array[String]([])
+default_value = "false"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_1ukat"]
+script = ExtResource("2_45x0v")
+name = "Game/Debug/DebugCombat"
+type = 1
+usage = 6
+hint = 0
+hint_string = Array[String]([])
+default_value = "false"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_kfkn3"]
+script = ExtResource("2_45x0v")
+name = "Game/Debug/ForceUnitType"
+type = 4
+usage = 6
+hint = 2
+hint_string = Array[String](["Default", "Hero", "Clown", "Undead"])
+default_value = "Default"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_qtc1l"]
+script = ExtResource("2_45x0v")
+name = "Game/Debug/SkipPhase"
+type = 4
+usage = 6
+hint = 2
+hint_string = Array[String](["None", "Poker", "Combat"])
+default_value = "None"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_jsdtw"]
+script = ExtResource("2_45x0v")
+name = "Game/Debug/CombatCardsOrder"
+type = 1
+usage = 6
+hint = 0
+hint_string = Array[String]([])
+default_value = "false"
+bool_value = false
+array_value = PackedStringArray()
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[sub_resource type="Resource" id="Resource_nng03"]
+script = ExtResource("2_45x0v")
+name = "Game/Debug/CardsArray"
+type = 28
+usage = 6
+hint = 23
+hint_string = Array[String]([])
+default_value = "false"
+bool_value = false
+array_value = PackedStringArray("combat_1day_we_all_die", "combat_backstabb")
+metadata/_custom_type_script = "uid://drjouegtbul42"
+
+[node name="AllCustomSettings" type="Node"]
+script = SubResource("GDScript_amu7p")
+settings_res = Array[ExtResource("2_45x0v")]([SubResource("Resource_1a1c5"), SubResource("Resource_1ukat"), SubResource("Resource_kfkn3"), SubResource("Resource_qtc1l"), SubResource("Resource_jsdtw"), SubResource("Resource_nng03")])

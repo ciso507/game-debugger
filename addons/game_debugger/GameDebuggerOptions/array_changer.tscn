@@ -1,0 +1,94 @@
+[gd_scene load_steps=2 format=3 uid="uid://liehobi8vjir"]
+
+[ext_resource type="Script" path="res://addons/game_debugger/GameDebuggerOptions/array_changer.gd" id="1_ae6nn"]
+
+[node name="ArrayChanger" type="Control" groups=["array_changer"]]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ae6nn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -194.0
+offset_bottom = -166.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.456617, 0.41919, 1, 1)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+z_index = 15
+z_as_relative = false
+layout_mode = 0
+offset_left = -504.0
+offset_top = -252.0
+offset_right = -265.0
+offset_bottom = -75.0
+text = "
+
+"
+wrap_mode = 1
+
+[node name="UpdateButton" type="Button" parent="."]
+z_index = 15
+z_as_relative = false
+layout_mode = 0
+offset_left = -340.0
+offset_top = -74.0
+offset_right = -275.0
+offset_bottom = -43.0
+text = "Update"
+
+[node name="PopupMenu" type="PopupMenu" parent="."]
+gui_disable_input = true
+gui_embed_subwindows = true
+title = "autocomplete"
+submenu_popup_delay = 0.1
+
+[node name="PopupMenu2" type="PopupMenu" parent="."]
+always_on_top = true
+mouse_passthrough = true
+hide_on_state_item_selection = true
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+
+[node name="PanelMenu" type="Control" parent="."]
+visible = false
+z_index = 15
+z_as_relative = false
+anchors_preset = 0
+offset_left = -477.0
+offset_top = -211.0
+offset_right = -288.0
+offset_bottom = 1.52588e-05
+scale = Vector2(0.8, 0.8)
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="PanelMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.376413, 0.372057, 0.641988, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelMenu"]
+layout_mode = 0
+offset_left = 11.25
+offset_top = 5.0
+offset_right = 175.25
+offset_bottom = 205.0
+
+[node name="Container" type="VBoxContainer" parent="PanelMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1

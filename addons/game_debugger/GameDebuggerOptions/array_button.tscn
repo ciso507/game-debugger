@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwy0k7873es3c"]
+
+[ext_resource type="PackedScene" uid="uid://dqtghrsp4hn5n" path="res://addons/game_debugger/GameDebuggerOptions/GameDebuggerOption.tscn" id="1_egmjk"]
+[ext_resource type="Script" path="res://addons/game_debugger/GameDebuggerOptions/array_button.gd" id="2_fdr26"]
+[ext_resource type="PackedScene" uid="uid://btqgh5g3trqee" path="res://addons/game_debugger/GameDebuggerOptions/delete_button.tscn" id="3_a8ifp"]
+
+[node name="PressButton" instance=ExtResource("1_egmjk")]
+offset_right = 137.0
+script = ExtResource("2_fdr26")
+but_array = []
+panel_type = "existing"
+button_text = "PressButton"
+
+[node name="Button" type="Button" parent="." index="0"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "PressButton"
+
+
+[node name="DeleteButton" parent="." index="1" instance=ExtResource("3_a8ifp")]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
