@@ -312,9 +312,9 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
 item_count = 2
 selected = 0
-popup/item_0/text = "English 🇬🇧"
+popup/item_0/text = "English (EN)"
 popup/item_0/id = 0
-popup/item_1/text = "Español 🇪🇸"
+popup/item_1/text = "Español (ES)"
 popup/item_1/id = 1
 
 [node name="Separator7" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]

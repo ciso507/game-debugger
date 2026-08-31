@@ -5,13 +5,13 @@
 [![Plugin Version](https://img.shields.io/badge/Version-1.0.0-purple.svg)]()
 
 🌐 **Select Language / Seleccionar Idioma**:  
-<a href="#-english-default"><img src="https://img.shields.io/badge/Language-English-blue?style=for-the-badge&logo=godotengine" alt="English"></a>
-<a href="#-español-clic-para-desplegar"><img src="https://img.shields.io/badge/Idioma-Espa%C3%B1ol-orange?style=for-the-badge&logo=godotengine" alt="Español"></a>
+<a href="#-english-en-default"><img src="https://img.shields.io/badge/Language-English_(EN)-blue?style=for-the-badge&logo=godotengine" alt="English (EN)"></a>
+<a href="#-español-es-clic-para-desplegar"><img src="https://img.shields.io/badge/Idioma-Espa%C3%B1ol_(ES)-orange?style=for-the-badge&logo=godotengine" alt="Español (ES)"></a>
 
 ---
 
 <details open>
-<summary><h2>🇬🇧 English (Default)</h2></summary>
+<summary><h2>🇬🇧 English (EN) (Default)</h2></summary>
 
 **Game Debugger** is a modern, real-time in-engine debug options manager built for **Godot Engine 4**. It allows game developers to dynamically create, reorder, modify, and persist custom debug settings (Boolean toggles, Integer counters, Float sliders, String inputs, Enum dropdowns, and Array list items) directly within the Godot editor and project settings.
 
@@ -102,7 +102,7 @@ func _process(delta: float) -> void:
 ---
 
 <details>
-<summary><h2>🇪🇸 Español (Clic para desplegar)</h2></summary>
+<summary><h2>🇪🇸 Español (ES) (Clic para desplegar)</h2></summary>
 
 **Game Debugger** es un administrador de opciones de depuración moderno en tiempo real desarrollado para **Godot Engine 4**. Permite a los desarrolladores de videojuegos crear, reordenar, modificar y guardar de forma dinámica configuraciones de depuración personalizadas (interruptores booleanos, contadores enteros, deslizadores flotantes, entradas de texto, menús desplegables Enum y listas de arreglos Array) directamente dentro del editor de Godot y ProjectSettings.
 

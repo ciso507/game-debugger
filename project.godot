@@ -10,7 +10,7 @@ config_version=5
 
 [Game]
 
-Debug/derta=Array[String](["car", "det", "delta", "sync"])
+Debug/SettingName=true
 
 [application]
 
