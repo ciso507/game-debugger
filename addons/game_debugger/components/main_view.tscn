@@ -1,8 +1,8 @@
-[gd_scene load_steps=29 format=3 uid="uid://cm7uua3fka03i"]
+[gd_scene format=3 uid="uid://cm7uua3fka03i"]
 
-[ext_resource type="Script" path="res://addons/game_debugger/components/main_view.gd" id="1_ng1b7"]
+[ext_resource type="Script" uid="uid://bdjhcm57pwirp" path="res://addons/game_debugger/components/main_view.gd" id="1_ng1b7"]
 [ext_resource type="PackedScene" uid="uid://b2784wy76jds7" path="res://addons/game_debugger/components/project_settings_debug.tscn" id="2_1ukat"]
-[ext_resource type="Script" path="res://addons/game_debugger/components/main_view_manager.gd" id="2_868r2"]
+[ext_resource type="Script" uid="uid://l07gf2mcgxel" path="res://addons/game_debugger/components/main_view_manager.gd" id="2_868r2"]
 [ext_resource type="Texture2D" uid="uid://lyhtv7k2xs4j" path="res://addons/game_debugger/assets/doc.png" id="3_2pnx0"]
 [ext_resource type="Texture2D" uid="uid://c0qpwbpg84ouu" path="res://addons/game_debugger/assets/backstabb.png" id="3_k11ff"]
 [ext_resource type="Texture2D" uid="uid://dyco5dlurvp55" path="res://addons/game_debugger/assets/1day_we_all_gonna_die.png" id="4_hxlg2"]
@@ -14,22 +14,19 @@
 [ext_resource type="Texture2D" uid="uid://djp0spxklt70b" path="res://addons/game_debugger/assets/battle.png" id="13_rkxfc"]
 [ext_resource type="Texture2D" uid="uid://dtavxie2tpuii" path="res://addons/game_debugger/assets/battleuiIcons_sword.png" id="14_m7if4"]
 [ext_resource type="Texture2D" uid="uid://dmkq68gskt3ai" path="res://addons/game_debugger/assets/Tiles_A_white.png" id="15_tp58l"]
-[ext_resource type="Script" path="res://addons/game_debugger/components/setting_resource_manager.gd" id="24_yeyvv"]
+[ext_resource type="Script" uid="uid://cpck0if1jcpyv" path="res://addons/game_debugger/components/setting_resource_manager.gd" id="24_yeyvv"]
 [ext_resource type="PackedScene" uid="uid://cp2pjqycu50ia" path="res://addons/game_debugger/GameDebuggerOptions/resource_setting_ui/setting_resource.tscn" id="25_kps53"]
 [ext_resource type="PackedScene" uid="uid://7hcpdqae750s" path="res://addons/game_debugger/GameDebuggerOptions/resource_setting_ui/TextEditOption.tscn" id="27_2pnx0"]
 [ext_resource type="PackedScene" uid="uid://ku6txfclyw5f" path="res://addons/game_debugger/components/SocialMedia.tscn" id="28_2pnx0"]
 
-[sub_resource type="Image" id="Image_4jep0"]
-data = {
-"data": PackedByteArray(255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 92, 92, 127, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 90, 90, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 42, 255, 90, 90, 0, 255, 94, 94, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 93, 93, 41, 255, 90, 90, 0, 255, 94, 94, 0, 255, 91, 91, 42, 255, 93, 93, 233, 255, 92, 92, 232, 255, 92, 92, 0, 255, 92, 92, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 93, 93, 44, 255, 91, 91, 0, 255, 91, 91, 42, 255, 91, 91, 42, 255, 93, 93, 0, 255, 91, 91, 45, 255, 93, 93, 44, 255, 91, 91, 0, 255, 91, 91, 42, 255, 91, 91, 42, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 45, 255, 92, 92, 235, 255, 92, 92, 234, 255, 89, 89, 43, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 91, 91, 0, 255, 92, 92, 0, 255, 92, 92, 0, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 91, 91, 59, 255, 92, 92, 61, 255, 92, 92, 0, 255, 92, 92, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0, 255, 93, 93, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynrta"]
+bg_color = Color(0.542737, 0.53883, 0.979547, 1)
 
-[sub_resource type="ImageTexture" id="ImageTexture_mpdoc"]
-image = SubResource("Image_4jep0")
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_te57j"]
+bg_color = Color(0.87451, 0.670588, 0.243137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pnx0"]
+bg_color = Color(0.639093, 0.637668, 0.91603, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qtc1l"]
 load_path = "res://.godot/imported/main_pic.png-2d44fb3fa55d51ddc52da5be2d7da7f9.ctex"
@@ -142,18 +139,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mq1ht"]
 _data = {
-"RESET": SubResource("Animation_jieg6"),
-"loop": SubResource("Animation_yn316")
+&"RESET": SubResource("Animation_jieg6"),
+&"loop": SubResource("Animation_yn316")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ynrta"]
-bg_color = Color(0.542737, 0.53883, 0.979547, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2pnx0"]
-bg_color = Color(0.639093, 0.637668, 0.91603, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_te57j"]
-bg_color = Color(0.87451, 0.670588, 0.243137, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_settings_bg"]
 bg_color = Color(0.08, 0.05, 0.16, 0.9)
@@ -167,8 +155,8 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
-[node name="MainView" type="Control" groups=["main_view"]]
-
+[node name="MainView" type="Control" unique_id=2120212623 groups=["main_view"]]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,300 +167,242 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_ng1b7")
 
-[node name="ProjectSettingsDebug" parent="." instance=ExtResource("2_1ukat")]
+[node name="ProjectSettingsDebug" parent="." unique_id=1009521331 instance=ExtResource("2_1ukat")]
 
-[node name="Margin" type="MarginContainer" parent="."]
+[node name="MainCenterContainer" type="CenterContainer" parent="." unique_id=1899313082]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-metadata/_edit_layout_mode = 1
-
-[node name="Content" type="HSplitContainer" parent="Margin"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-dragger_visibility = 1
-
-[node name="SidePanel" type="VBoxContainer" parent="Margin/Content"]
-custom_minimum_size = Vector2(270, 0)
-layout_mode = 2
-size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Toolbar" type="HBoxContainer" parent="Margin/Content/SidePanel"]
+[node name="BackgroundLayers" type="Control" parent="MainCenterContainer" unique_id=1731475710]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="CodePanel" type="VBoxContainer" parent="Margin/Content"]
-custom_minimum_size = Vector2(900, 0)
+[node name="BgVBox" type="VBoxContainer" parent="MainCenterContainer/BackgroundLayers" unique_id=750155771]
+layout_mode = 0
+offset_left = -320.0
+offset_top = -25.0
+offset_right = 320.0
+offset_bottom = 260.0
+mouse_filter = 2
+theme_override_constants/separation = 2
+
+[node name="ColorRect4" type="ColorRect" parent="MainCenterContainer/BackgroundLayers/BgVBox" unique_id=1528273320]
+custom_minimum_size = Vector2(640, 220)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 4.0
+color = Color(0.200054, 0.141808, 0.447908, 1)
+
+[node name="Control2" type="Control" parent="MainCenterContainer/BackgroundLayers/BgVBox" unique_id=694949100]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="ColorRect8" type="ColorRect" parent="MainCenterContainer/BackgroundLayers/BgVBox" unique_id=602202021]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.336812, 0.1861, 0.621248, 1)
+
+[node name="Control4" type="Control" parent="MainCenterContainer/BackgroundLayers/BgVBox" unique_id=1583475205]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="ColorRect6" type="ColorRect" parent="MainCenterContainer/BackgroundLayers/BgVBox" unique_id=710692879]
+custom_minimum_size = Vector2(640, 30)
+layout_mode = 2
+color = Color(0.067158, 0.0213244, 0.157403, 1)
+
+[node name="Control3" type="Control" parent="MainCenterContainer/BackgroundLayers/BgVBox" unique_id=1978858203]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+
+[node name="ColorRect7" type="ColorRect" parent="MainCenterContainer/BackgroundLayers/BgVBox" unique_id=1458037107]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.067158, 0.0213244, 0.157403, 1)
+
+[node name="PanelContainer" type="VBoxContainer" parent="MainCenterContainer" unique_id=1236132613]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="TopToolbar" type="HBoxContainer" parent="MainCenterContainer/PanelContainer" unique_id=1363512408]
+custom_minimum_size = Vector2(640, 32)
+layout_mode = 2
 mouse_filter = 2
 
-[node name="Toolbar" type="HBoxContainer" parent="Margin/Content/CodePanel"]
+[node name="Separator" type="VSeparator" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=759759954]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Separator" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="Separator2" type="VSeparator" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=1489486049]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Separator2" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="TestLineButton" type="Button" parent="Margin/Content/CodePanel/Toolbar"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-tooltip_text = "Test dialogue from current line"
-disabled = true
-icon = SubResource("ImageTexture_mpdoc")
-flat = true
-
-[node name="Space" type="Control" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="Space" type="Control" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=593639533]
 custom_minimum_size = Vector2(260, 32)
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="Separator4" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="Separator4" type="VSeparator" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=17693109]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Space2" type="Control" parent="Margin/Content/CodePanel/Toolbar"]
-custom_minimum_size = Vector2(15, 32)
+[node name="DocIcon" type="Control" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=1135299352]
+custom_minimum_size = Vector2(18, 32)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Margin/Content/CodePanel/Toolbar/Space2"]
+[node name="TextureRect" type="TextureRect" parent="MainCenterContainer/PanelContainer/TopToolbar/DocIcon" unique_id=1864301988]
 texture_filter = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -2.5
-offset_top = 2.0
+offset_top = 4.0
 offset_right = 504.5
-offset_bottom = 482.0
+offset_bottom = 484.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_2pnx0")
 
-[node name="SupportButton" type="Button" parent="Margin/Content/CodePanel/Toolbar"]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-tooltip_text = "Support Dialogue Manager"
-text = "Sponsor"
-flat = true
-
-[node name="Separator5" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
-visible = false
-layout_mode = 2
-mouse_filter = 2
-
-[node name="DocsButton" type="Button" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="DocsButton" type="Button" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=1476698449]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+tooltip_text = "Open Documentation"
 focus_mode = 0
 mouse_default_cursor_shape = 2
 text = "Docs"
 flat = true
 
-[node name="Separator6" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="Separator6" type="VSeparator" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=79785304]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="LanguageHeader" type="HBoxContainer" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="LanguageHeader" type="HBoxContainer" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=803508922]
 layout_mode = 2
-alignment = 0
 mouse_filter = 2
 
-[node name="LanguageOptionButton" type="OptionButton" parent="Margin/Content/CodePanel/Toolbar/LanguageHeader"]
+[node name="LanguageOptionButton" type="OptionButton" parent="MainCenterContainer/PanelContainer/TopToolbar/LanguageHeader" unique_id=1614532476]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(115, 24)
 layout_mode = 2
+tooltip_text = "Select Language"
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 11
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
-item_count = 2
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 selected = 0
+item_count = 2
 popup/item_0/text = "English (EN)"
 popup/item_0/id = 0
 popup/item_1/text = "Español (ES)"
 popup/item_1/id = 1
 
-[node name="Separator7" type="VSeparator" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="Separator7" type="VSeparator" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=456458202]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="VersionLabel" type="Label" parent="Margin/Content/CodePanel/Toolbar"]
+[node name="VersionLabel" type="Label" parent="MainCenterContainer/PanelContainer/TopToolbar" unique_id=1520839711]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0.490196)
 layout_mode = 2
 text = "v1.0.0"
 vertical_alignment = 1
 
-[node name="BgCenterContainer" type="CenterContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 151.0
-offset_top = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="BgCenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 2
-
-[node name="Control" type="Control" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 185)
-layout_mode = 2
-
-[node name="ColorRect4" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(640, 220)
-layout_mode = 2
-color = Color(0.200054, 0.141808, 0.447908, 1)
-
-[node name="Control2" type="Control" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="ColorRect8" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-mouse_filter = 2
-color = Color(0.336812, 0.1861, 0.621248, 1)
-
-[node name="Control4" type="Control" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
-[node name="ColorRect6" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(640, 30)
-layout_mode = 2
-color = Color(0.067158, 0.0213244, 0.157403, 1)
-
-[node name="Control3" type="Control" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 1)
-layout_mode = 2
-
-[node name="ColorRect7" type="ColorRect" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-mouse_filter = 2
-color = Color(0.067158, 0.0213244, 0.157403, 1)
-
-[node name="Control5" type="Control" parent="BgCenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 25)
-layout_mode = 2
-
-[node name="MainCenterContainer" type="CenterContainer" parent="."]
-
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 151.0
-offset_top = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="PanelContainer" type="VBoxContainer" parent="MainCenterContainer"]
-
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/separation = 10
-
-[node name="Control2" type="Control" parent="MainCenterContainer/PanelContainer"]
-custom_minimum_size = Vector2(0, 150)
+[node name="Control2" type="Control" parent="MainCenterContainer/PanelContainer" unique_id=110765044]
+custom_minimum_size = Vector2(0, 220)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MainImage" type="TextureRect" parent="MainCenterContainer/PanelContainer"]
+[node name="MainImage" type="TextureRect" parent="MainCenterContainer/PanelContainer" unique_id=2004151564]
 custom_minimum_size = Vector2(600, 205)
 layout_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 2
+mouse_filter = 2
 texture = SubResource("CompressedTexture2D_qtc1l")
 expand_mode = 3
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MainCenterContainer/PanelContainer/MainImage"]
-layout_mode = 2
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainCenterContainer/PanelContainer/MainImage" unique_id=1970896247]
+layout_mode = 0
 offset_left = 15.0
 offset_top = -2.0
 offset_right = 391.0
 offset_bottom = 158.0
+mouse_filter = 2
 theme_override_constants/separation = -28
 
-[node name="TextureRect" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2" unique_id=1625656130]
 texture_filter = 1
 layout_mode = 2
+tooltip_text = "Wishlist Bounty Hunters on Steam!"
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("3_k11ff")
 expand_mode = 3
 
-[node name="TextureRect2" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2"]
+[node name="TextureRect2" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2" unique_id=1956448811]
 texture_filter = 1
 layout_mode = 2
+tooltip_text = "Wishlist Bounty Hunters on Steam!"
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("4_hxlg2")
 
-[node name="TextureRect3" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2"]
+[node name="TextureRect3" type="TextureRect" parent="MainCenterContainer/PanelContainer/MainImage/HBoxContainer2" unique_id=571149292]
 texture_filter = 1
 layout_mode = 2
+tooltip_text = "Wishlist Bounty Hunters on Steam!"
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 texture = ExtResource("6_hxlg2")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainCenterContainer/PanelContainer/MainImage"]
+[node name="SocialIconsContainer" type="Control" parent="MainCenterContainer/PanelContainer/MainImage" unique_id=915382392]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 655.0
+offset_right = 695.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="SocialMedia" parent="MainCenterContainer/PanelContainer/MainImage/SocialIconsContainer" unique_id=554259676 instance=ExtResource("28_2pnx0")]
 layout_mode = 0
-offset_left = 422.0
-offset_top = -45.0
-offset_right = 570.0
-offset_bottom = 90.0
 
-[node name="SpriteBGs" type="Node2D" parent="MainCenterContainer/PanelContainer"]
-position = Vector2(-341, -113)
+[node name="SpriteBGs" type="Node2D" parent="MainCenterContainer/PanelContainer" unique_id=1054328236]
+position = Vector2(-310, 14)
 
-[node name="TowerBlue" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="TowerBlue" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=1140065393]
 z_index = 5
 texture_filter = 1
 position = Vector2(808, 254)
 texture = ExtResource("5_bs5my")
 
-[node name="HappyFace" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="HappyFace" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=1126081232]
 z_index = 5
 texture_filter = 1
 position = Vector2(810, 270)
 texture = ExtResource("10_8wj7s")
 
-[node name="EntTexts" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="EntTexts" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=1406688107]
 texture_filter = 1
 position = Vector2(800, 151)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("11_yn316")
 
-[node name="MainTitle" type="Node2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="MainTitle" type="Node2D" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=1369515372]
 
-[node name="Gamedebugger" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+[node name="Gamedebugger" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle" unique_id=2125038453]
 visible = false
 texture_filter = 2
 material = SubResource("ShaderMaterial_qq08o")
@@ -480,137 +410,146 @@ position = Vector2(553, 439.455)
 scale = Vector2(1.22699, 1.5)
 texture = ExtResource("8_x0e5q")
 
-[node name="TitleAnime" type="AnimationPlayer" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+[node name="TitleAnime" type="AnimationPlayer" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle" unique_id=1671426889]
 unique_name_in_owner = true
 root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_mq1ht")
-}
-autoplay = "loop"
+libraries/ = SubResource("AnimationLibrary_mq1ht")
+autoplay = &"loop"
 
-[node name="ColorRect" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+[node name="ColorRect" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle" unique_id=914484397]
 offset_left = 848.0
 offset_top = 166.0
 offset_right = 856.0
 offset_bottom = 182.0
 color = Color(0.466726, 0.815066, 0.855428, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle"]
+[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs/MainTitle" unique_id=1028850609]
 offset_left = 859.0
 offset_top = 166.0
 offset_right = 867.0
 offset_bottom = 170.0
 color = Color(0.684069, 0.312633, 0.815071, 1)
 
-[node name="Battle" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="Battle" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=1360192805]
 z_index = 5
 texture_filter = 1
 position = Vector2(731, 250)
 texture = ExtResource("13_rkxfc")
 
-[node name="BattleuiIconsSword" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="BattleuiIconsSword" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=248885996]
 texture_filter = 1
 position = Vector2(694, 230)
 texture = ExtResource("14_m7if4")
 
-[node name="TilesAWhite" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="TilesAWhite" type="Sprite2D" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=231264731]
 z_index = 5
 position = Vector2(906, 303)
 scale = Vector2(0.08, 0.08)
 texture = ExtResource("15_tp58l")
 
-[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=2028995894]
 color = Color(0.684069, 0.312633, 0.815071, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="ColorRect3" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=272771900]
 color = Color(0.684069, 0.312633, 0.815071, 1)
 
-[node name="ColorRect6" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs"]
+[node name="ColorRect6" type="ColorRect" parent="MainCenterContainer/PanelContainer/SpriteBGs" unique_id=143780183]
 z_index = -1
 color = Color(0.067158, 0.0213244, 0.157403, 1)
 
-[node name="Control" type="Control" parent="MainCenterContainer/PanelContainer"]
+[node name="Control" type="Control" parent="MainCenterContainer/PanelContainer" unique_id=1633344620]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MainCenterContainer/PanelContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainCenterContainer/PanelContainer" unique_id=350794964]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 5
 
-[node name="NewSettingButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+[node name="NewSettingButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer" unique_id=689071714]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 text = "Create New Setting..."
 icon = ExtResource("14_m7if4")
 
-[node name="ReloadButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+[node name="ReloadButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer" unique_id=1933699655]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 text = "Reload Addon"
 icon = ExtResource("14_m7if4")
 
-[node name="Control" type="Control" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="MainCenterContainer/PanelContainer/HBoxContainer" unique_id=869843750]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="InfoButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer"]
+[node name="InfoButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer" unique_id=2082089501]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
-theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
 text = "Info..."
 icon = ExtResource("14_m7if4")
 
-[node name="MainViewManager" type="Control" parent="MainCenterContainer"]
+[node name="UtilityButton" type="Button" parent="MainCenterContainer/PanelContainer/HBoxContainer" unique_id=1429302423]
+unique_name_in_owner = true
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Open utilities panel"
+theme_override_styles/normal = SubResource("StyleBoxFlat_ynrta")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_te57j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2pnx0")
+text = "Utility..."
+icon = ExtResource("14_m7if4")
+
+[node name="MainViewManager" type="Control" parent="MainCenterContainer" unique_id=464461031]
 z_index = 20
 z_as_relative = false
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("2_868r2")
 
-[node name="SettingsPanelBG" type="Panel" parent="MainCenterContainer/MainViewManager"]
+[node name="SettingsPanelBG" type="Panel" parent="MainCenterContainer/MainViewManager" unique_id=1469238028]
 layout_mode = 0
 offset_left = -292.0
-offset_top = -256.0
+offset_top = -215.0
 offset_right = 47.0
-offset_bottom = -96.0
+offset_bottom = -55.0
 scale = Vector2(0.8, 0.8)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_settings_bg")
 
-[node name="ScrollContainerz" type="ScrollContainer" parent="MainCenterContainer/MainViewManager"]
+[node name="ScrollContainerz" type="ScrollContainer" parent="MainCenterContainer/MainViewManager" unique_id=1885997372]
 z_index = 60
 z_as_relative = false
 layout_mode = 0
 offset_left = -287.0
-offset_top = -251.0
+offset_top = -210.0
 offset_right = 42.0
-offset_bottom = -101.0
+offset_bottom = -60.0
 scale = Vector2(0.8, 0.8)
 
-
-
-[node name="HBoxContainer" type="VBoxContainer" parent="MainCenterContainer/MainViewManager/ScrollContainerz"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MainCenterContainer/MainViewManager/ScrollContainerz" unique_id=460565483]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="SettingsFoldButton" type="Button" parent="MainCenterContainer/MainViewManager"]
+[node name="SettingsFoldButton" type="Button" parent="MainCenterContainer/MainViewManager" unique_id=1334591455]
 unique_name_in_owner = true
+visible = false
 z_index = 100
 z_as_relative = false
 custom_minimum_size = Vector2(24, 20)
@@ -618,36 +557,35 @@ layout_mode = 0
 offset_left = -140.0
 offset_top = -105.0
 offset_right = -116.0
-offset_bottom = -85.0
+offset_bottom = -74.0
 scale = Vector2(0.8, 0.8)
+tooltip_text = "Toggle settings list"
 focus_mode = 0
-mouse_filter = 0
 theme_override_colors/font_color = Color(0.75, 0.82, 0.95, 0.85)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(0.5, 0.7, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-flat = true
 text = "▼"
+flat = true
 
-[node name="SpriteBGs" type="Node2D" parent="MainCenterContainer/MainViewManager"]
+[node name="SpriteBGs" type="Node2D" parent="MainCenterContainer/MainViewManager" unique_id=1957980452]
 
-[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/MainViewManager/SpriteBGs"]
+[node name="ColorRect2" type="ColorRect" parent="MainCenterContainer/MainViewManager/SpriteBGs" unique_id=2115078294]
 offset_left = -289.0
-offset_top = -268.0
+offset_top = -227.0
 offset_right = -157.0
-offset_bottom = -266.0
+offset_bottom = -225.0
 color = Color(0.684069, 0.312633, 0.815071, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="MainCenterContainer/MainViewManager/SpriteBGs"]
+[node name="ColorRect3" type="ColorRect" parent="MainCenterContainer/MainViewManager/SpriteBGs" unique_id=1388859443]
 offset_left = -141.0
-offset_top = -268.0
+offset_top = -227.0
 offset_right = -129.0
-offset_bottom = -266.0
+offset_bottom = -225.0
 color = Color(0.684069, 0.312633, 0.815071, 1)
 
-[node name="SettingCreatorContainer" type="Control" parent="."]
-
+[node name="SettingCreatorContainer" type="Control" parent="." unique_id=1728596547]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -657,16 +595,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SettingResourceManager" type="Control" parent="SettingCreatorContainer"]
+[node name="SettingResourceManager" type="Control" parent="SettingCreatorContainer" unique_id=38922962]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("24_yeyvv")
 
-
-[node name="SettingResource" parent="SettingCreatorContainer/SettingResourceManager" instance=ExtResource("25_kps53")]
+[node name="SettingResource" parent="SettingCreatorContainer/SettingResourceManager" unique_id=6378304 instance=ExtResource("25_kps53")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -675,76 +614,23 @@ offset_top = -180.0
 offset_right = 140.0
 offset_bottom = 260.0
 
-[node name="ColorRect" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="0"]
-offset_left = 5.0
-offset_top = -1.0
-offset_right = 5.0
-offset_bottom = -1.0
-
-[node name="VBoxContainer" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="1"]
-offset_left = 11.0
-offset_top = 7.77783
-offset_right = 393.0
-offset_bottom = 320.0
-
-[node name="CreationButtonContainer" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="2"]
-offset_left = 27.7778
-offset_top = 330.0
-offset_right = 292.778
-offset_bottom = 370.0
-
-[node name="CompleteMessage" parent="SettingCreatorContainer/SettingResourceManager/SettingResource" index="3"]
-offset_left = 65.5556
-offset_top = 380.0
-offset_right = 105.556
-offset_bottom = 420.0
-
-
-[node name="TextEditOption" parent="SettingCreatorContainer/SettingResourceManager" instance=ExtResource("27_2pnx0")]
+[node name="TextEditOption" parent="SettingCreatorContainer/SettingResourceManager" unique_id=406215633 instance=ExtResource("27_2pnx0")]
 visible = false
 modulate = Color(0.607843, 0.917647, 1, 1)
-layout_mode = 2
+layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 150.0
+offset_left = 120.0
 offset_top = -180.0
-offset_right = 400.0
+offset_right = 370.0
 offset_bottom = 260.0
-
-
-[node name="SocialIconsContainer" type="CenterContainer" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 151.0
-offset_top = 34.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Control" type="Control" parent="SocialIconsContainer"]
-layout_mode = 2
-
-[node name="SocialMedia" parent="SocialIconsContainer/Control" instance=ExtResource("28_2pnx0")]
-offset_left = 357.0
-offset_top = -117.0
-offset_right = 409.0
-offset_bottom = 165.0
 
 [connection signal="theme_changed" from="." to="." method="_on_main_view_theme_changed"]
 [connection signal="visibility_changed" from="." to="." method="_on_main_view_visibility_changed"]
-[connection signal="pressed" from="Margin/Content/CodePanel/Toolbar/TestLineButton" to="." method="_on_test_line_button_pressed"]
-[connection signal="pressed" from="Margin/Content/CodePanel/Toolbar/SupportButton" to="." method="_on_support_button_pressed"]
-[connection signal="gui_input" from="MainCenterContainer/PanelContainer/MainImage" to="." method="_on_banner_image_gui_input"]
+[connection signal="pressed" from="MainCenterContainer/PanelContainer/TopToolbar/DocsButton" to="." method="_on_docs_button_pressed"]
+[connection signal="item_selected" from="MainCenterContainer/PanelContainer/TopToolbar/LanguageHeader/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
 [connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/NewSettingButton" to="." method="_on_new_setting_button_pressed"]
 [connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/ReloadButton" to="." method="_on_reload_button_pressed"]
-[connection signal="pressed" from="Margin/Content/CodePanel/Toolbar/DocsButton" to="." method="_on_docs_button_pressed"]
-[connection signal="item_selected" from="Margin/Content/CodePanel/Toolbar/LanguageHeader/LanguageOptionButton" to="." method="_on_language_option_button_item_selected"]
-
-
-
-
-
+[connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/InfoButton" to="." method="_on_info_button_pressed"]
+[connection signal="pressed" from="MainCenterContainer/PanelContainer/HBoxContainer/UtilityButton" to="." method="_on_utility_button_pressed"]

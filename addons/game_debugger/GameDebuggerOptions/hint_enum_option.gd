@@ -8,7 +8,6 @@ enum TYPE { NONE, TYPE, USAGE, HINT, PRESET }
 
 
 @export var items:Array = []
-var game_debugger_singleton
 var main_view:MainView
 var owner_setting
 

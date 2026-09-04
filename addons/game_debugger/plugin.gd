@@ -15,9 +15,7 @@ static var main_view_instance: Node
 
 
 func _enable_plugin() -> void:
-	if not ProjectSettings.has_setting("autoload/GameDebugger"):
-		add_autoload_singleton("GameDebugger", ("res://addons/game_debugger/components/GameDebugger.gd"))
-		ProjectSettings.save()
+	pass
 
 
 func get_plugin_path() -> String:
@@ -74,11 +72,6 @@ func _disable_plugin() -> void:
 	if is_instance_valid(main_view):
 		main_view.queue_free()
 		main_view = null
-
-	if ProjectSettings.has_setting("autoload/GameDebugger"):
-		remove_autoload_singleton("GameDebugger")
-
-	ProjectSettings.save()
 
 
 func _has_main_screen() -> bool:

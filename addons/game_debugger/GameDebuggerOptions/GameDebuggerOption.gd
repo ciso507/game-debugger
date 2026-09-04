@@ -48,4 +48,3 @@ func add_delete_button():
 	if not has_node("DeleteButton") and not has_node("delete_button"):
 		var instance = DELETE_BUTTON.instantiate()
 		add_child(instance)
-

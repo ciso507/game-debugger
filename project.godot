@@ -18,10 +18,6 @@ config/name="GameDebugger"
 run/main_scene="res://addons/game_debugger/examples/example_scene.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
-[autoload]
-
-GameDebugger="*uid://b6gsu4l0c831w"
-
 [display]
 
 window/stretch/mode="canvas_items"

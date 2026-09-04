@@ -15,7 +15,6 @@ const ContainerCustomSetting = preload("res://addons/game_debugger/resources/Con
 var resources_created
 
 
-#var game_debugger_singleton:GameDebugger
 #var combat_card_lib :CardLibrary
 
 var res_prop:ResProperty
@@ -36,9 +35,9 @@ var card_pool: Dictionary = {
 
 
 
-@onready var bg_center_container: CenterContainer = %BgCenterContainer
-@onready var social_icons_container: CenterContainer = %SocialIconsContainer
-@onready var margin_container: Control = $Margin
+@onready var bg_center_container: Control = get_node_or_null("%BgCenterContainer")
+@onready var social_icons_container: Control = %SocialIconsContainer
+@onready var margin_container: Control = get_node_or_null("Margin")
 @onready var setting_creator_container: Control = %SettingCreatorContainer
 
 var is_panning: bool = false
@@ -105,6 +104,10 @@ func _ready() -> void:
 		var info_btn = get_node("%InfoButton") as Button
 		if is_instance_valid(info_btn) and not info_btn.pressed.is_connected(_on_info_button_pressed):
 			info_btn.pressed.connect(_on_info_button_pressed)
+	if has_node("%UtilityButton"):
+		var util_btn = get_node("%UtilityButton") as Button
+		if is_instance_valid(util_btn) and not util_btn.pressed.is_connected(_on_utility_button_pressed):
+			util_btn.pressed.connect(_on_utility_button_pressed)
 	if has_node("%DocsButton"):
 		var docs_btn = get_node("%DocsButton") as Button
 		if is_instance_valid(docs_btn) and not docs_btn.pressed.is_connected(_on_docs_button_pressed):
@@ -117,9 +120,29 @@ func _ready() -> void:
 		if not lang_opt.item_selected.is_connected(_on_language_option_button_item_selected):
 			lang_opt.item_selected.connect(_on_language_option_button_item_selected)
 
-	_setup_main_banner_wishlist()
+	_setup_banner_cards_wishlist()
 	apply_language(current_language)
 	call_deferred("_apply_panning_and_clamping")
+
+
+func _setup_banner_cards_wishlist() -> void:
+	var card_nodes = [
+		get_node_or_null("MainCenterContainer/PanelContainer/MainImage/HBoxContainer2/TextureRect"),
+		get_node_or_null("MainCenterContainer/PanelContainer/MainImage/HBoxContainer2/TextureRect2"),
+		get_node_or_null("MainCenterContainer/PanelContainer/MainImage/HBoxContainer2/TextureRect3")
+	]
+	for card in card_nodes:
+		if is_instance_valid(card) and card is Control:
+			card.mouse_filter = Control.MOUSE_FILTER_STOP
+			card.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+			if not card.gui_input.is_connected(_on_card_image_gui_input):
+				card.gui_input.connect(_on_card_image_gui_input)
+
+
+func _on_card_image_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		OS.shell_open(STEAM_WISHLIST_URL)
+		get_viewport().set_input_as_handled()
 
 
 func apply_language(lang_code: String) -> void:
@@ -151,31 +174,43 @@ func apply_language(lang_code: String) -> void:
 	if is_instance_valid(test_btn):
 		test_btn.tooltip_text = "Probar diálogo desde la línea actual" if is_es else "Test dialogue from current line"
 
-	# 3. Banner wishlist tooltip
-	var mi = get_node_or_null("MainCenterContainer/PanelContainer/MainImage") as Control
-	if is_instance_valid(mi):
-		_update_banner_tooltips(mi, is_es)
+	# 3. Banner cards wishlist tooltip
+	var card_tooltip = "¡Añade Bounty Hunters a tu lista de deseados en Steam!" if is_es else "Wishlist Bounty Hunters on Steam!"
+	var card_nodes = [
+		get_node_or_null("MainCenterContainer/PanelContainer/MainImage/HBoxContainer2/TextureRect"),
+		get_node_or_null("MainCenterContainer/PanelContainer/MainImage/HBoxContainer2/TextureRect2"),
+		get_node_or_null("MainCenterContainer/PanelContainer/MainImage/HBoxContainer2/TextureRect3")
+	]
+	for card in card_nodes:
+		if is_instance_valid(card) and card is Control:
+			card.tooltip_text = card_tooltip
 
 	# 4. Action buttons
 	var new_setting_btn = get_node_or_null("%NewSettingButton") as Button
 	if is_instance_valid(new_setting_btn):
-		new_setting_btn.text = "Crear Nueva Configuración..." if is_es else "Create New Setting..."
+		new_setting_btn.text = "Crear Nueva\nConfiguración..." if is_es else "Create New Setting..."
 
 	var reload_btn = get_node_or_null("%ReloadButton") as Button
 	if is_instance_valid(reload_btn):
-		reload_btn.text = "Recargar Addon" if is_es else "Reload Addon"
+		reload_btn.text = "Recargar\nAddon" if is_es else "Reload Addon"
 
 	var info_btn = get_node_or_null("%InfoButton") as Button
 	if is_instance_valid(info_btn):
 		info_btn.text = "Información..." if is_es else "Info..."
+
+	var util_btn = get_node_or_null("%UtilityButton") as Button
+	if is_instance_valid(util_btn):
+		util_btn.text = "Utilidades..." if is_es else "Utility..."
+		util_btn.tooltip_text = "Abrir panel de utilidades" if is_es else "Open utilities panel"
 
 	# 5. Fold button
 	var fold_btn = get_node_or_null("%SettingsFoldButton") as Button
 	if is_instance_valid(fold_btn):
 		fold_btn.tooltip_text = "Alternar lista de configuraciones" if is_es else "Toggle settings list"
 
-	# 6. Info Panel
+	# 6. Info & Utility Panels
 	_update_info_panel_language(is_es)
+	_update_utility_panel_language(is_es)
 
 	# 7. SettingResource creator panel
 	if is_instance_valid(setting_resource_node) and setting_resource_node.has_method("apply_language"):
@@ -198,41 +233,9 @@ func apply_language(lang_code: String) -> void:
 				db.apply_language(current_language)
 
 
-func _update_banner_tooltips(node: Node, is_es: bool) -> void:
-	if node is Control:
-		(node as Control).tooltip_text = "¡Añade Bounty Hunters a tu lista de deseados en Steam!" if is_es else "Wishlist Bounty Hunters on Steam!"
-	for child in node.get_children():
-		_update_banner_tooltips(child, is_es)
-
-
-func _setup_main_banner_wishlist() -> void:
-	var mi = get_node_or_null("MainCenterContainer/PanelContainer/MainImage") as Control
-	if is_instance_valid(mi):
-		_setup_banner_input_recursive(mi)
-
-
-func _setup_banner_input_recursive(node: Node) -> void:
-	if node is Control:
-		var ctrl = node as Control
-		ctrl.mouse_filter = Control.MOUSE_FILTER_STOP
-		ctrl.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
-		ctrl.tooltip_text = "¡Añade Bounty Hunters a tu lista de deseados en Steam!" if current_language == "ES" else "Wishlist Bounty Hunters on Steam!"
-		if not ctrl.gui_input.is_connected(_on_main_banner_gui_input):
-			ctrl.gui_input.connect(_on_main_banner_gui_input)
-
-	for child in node.get_children():
-		_setup_banner_input_recursive(child)
-
-
-func _on_main_banner_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.pressed:
-			OS.shell_open(STEAM_WISHLIST_URL)
-			get_viewport().set_input_as_handled()
-	elif event is InputEventKey:
-		if event.pressed:
-			OS.shell_open(STEAM_WISHLIST_URL)
-			get_viewport().set_input_as_handled()
+var utility_panel_node: PanelContainer = null
+var is_dragging_utility_panel: bool = false
+var drag_utility_panel_offset: Vector2 = Vector2.ZERO
 
 
 var info_panel_node: PanelContainer = null
@@ -362,6 +365,163 @@ func _on_info_button_pressed() -> void:
 			clamp_control_inside_window(info_panel_node)
 
 
+func _setup_utility_panel() -> void:
+	if is_instance_valid(utility_panel_node):
+		return
+
+	utility_panel_node = PanelContainer.new()
+	utility_panel_node.name = "UtilitySummaryPanel"
+	utility_panel_node.visible = false
+	utility_panel_node.z_index = 95
+	utility_panel_node.z_as_relative = false
+	utility_panel_node.custom_minimum_size = Vector2(300, 200)
+	utility_panel_node.layout_mode = 0
+	utility_panel_node.position = Vector2(400, 60)
+
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(0.12, 0.1, 0.22, 0.95)
+	style.border_width_left = 2
+	style.border_width_top = 2
+	style.border_width_right = 2
+	style.border_width_bottom = 2
+	style.border_color = Color(0.65, 0.45, 0.95, 1.0)
+	style.corner_radius_top_left = 8
+	style.corner_radius_top_right = 8
+	style.corner_radius_bottom_right = 8
+	style.corner_radius_bottom_left = 8
+	style.content_margin_left = 14
+	style.content_margin_top = 12
+	style.content_margin_right = 14
+	style.content_margin_bottom = 12
+	utility_panel_node.add_theme_stylebox_override("panel", style)
+
+	var vbox = VBoxContainer.new()
+	vbox.add_theme_constant_override("separation", 10)
+	utility_panel_node.add_child(vbox)
+
+	var header_hbox = HBoxContainer.new()
+	vbox.add_child(header_hbox)
+
+	var title_lbl = Label.new()
+	title_lbl.name = "UtilityTitleLabel"
+	title_lbl.text = "🛠 Utilidades de Debug" if current_language == "ES" else "🛠 Debug Utilities"
+	title_lbl.add_theme_font_size_override("font_size", 15)
+	title_lbl.add_theme_color_override("font_color", Color(0.85, 0.75, 1.0, 1.0))
+	title_lbl.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	header_hbox.add_child(title_lbl)
+
+	var close_btn = Button.new()
+	close_btn.text = "✖"
+	close_btn.flat = true
+	close_btn.focus_mode = Control.FOCUS_NONE
+	close_btn.add_theme_color_override("font_color", Color(0.8, 0.8, 0.8, 1.0))
+	close_btn.pressed.connect(func(): if is_instance_valid(utility_panel_node): utility_panel_node.hide())
+	header_hbox.add_child(close_btn)
+
+	var sep = HSeparator.new()
+	vbox.add_child(sep)
+
+	var scroll = ScrollContainer.new()
+	scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	vbox.add_child(scroll)
+
+	var content_vbox = VBoxContainer.new()
+	content_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	content_vbox.add_theme_constant_override("separation", 8)
+	scroll.add_child(content_vbox)
+
+	var desc_lbl = Label.new()
+	desc_lbl.name = "UtilityDescLabel"
+	desc_lbl.text = "Herramientas de diagnóstico y rendimiento:" if current_language == "ES" else "Diagnostic and performance tools:"
+	desc_lbl.add_theme_font_size_override("font_size", 12)
+	desc_lbl.add_theme_color_override("font_color", Color(0.75, 0.7, 0.85, 1.0))
+	desc_lbl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	content_vbox.add_child(desc_lbl)
+
+	# Benchmark Button (no icon, pure text)
+	var bench_btn = Button.new()
+	bench_btn.name = "UtilityBenchmarkButton"
+	bench_btn.text = "Benchmark Plugin"
+	bench_btn.custom_minimum_size = Vector2(0, 32)
+	bench_btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	bench_btn.focus_mode = Control.FOCUS_NONE
+	bench_btn.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+
+	var btn_normal = StyleBoxFlat.new()
+	btn_normal.bg_color = Color(0.24, 0.18, 0.45, 1.0)
+	btn_normal.border_width_left = 1
+	btn_normal.border_width_top = 1
+	btn_normal.border_width_right = 1
+	btn_normal.border_width_bottom = 1
+	btn_normal.border_color = Color(0.65, 0.45, 0.95, 0.8)
+	btn_normal.corner_radius_top_left = 5
+	btn_normal.corner_radius_top_right = 5
+	btn_normal.corner_radius_bottom_right = 5
+	btn_normal.corner_radius_bottom_left = 5
+	btn_normal.content_margin_left = 10
+	btn_normal.content_margin_right = 10
+	btn_normal.content_margin_top = 6
+	btn_normal.content_margin_bottom = 6
+
+	var btn_hover = btn_normal.duplicate()
+	btn_hover.bg_color = Color(0.32, 0.25, 0.58, 1.0)
+	btn_hover.border_color = Color(0.85, 0.65, 1.0, 1.0)
+
+	var btn_pressed = btn_normal.duplicate()
+	btn_pressed.bg_color = Color(0.18, 0.12, 0.35, 1.0)
+
+	bench_btn.add_theme_stylebox_override("normal", btn_normal)
+	bench_btn.add_theme_stylebox_override("hover", btn_hover)
+	bench_btn.add_theme_stylebox_override("pressed", btn_pressed)
+	bench_btn.pressed.connect(func(): run_plugin_benchmark())
+	content_vbox.add_child(bench_btn)
+
+	add_child(utility_panel_node)
+	_update_utility_panel_language(current_language == "ES")
+
+
+func _update_utility_panel_language(is_es: bool) -> void:
+	if not is_instance_valid(utility_panel_node):
+		return
+	var title_lbl = utility_panel_node.find_child("UtilityTitleLabel", true, false) as Label
+	if is_instance_valid(title_lbl):
+		title_lbl.text = "🛠 Utilidades de Debug" if is_es else "🛠 Debug Utilities"
+
+	var desc_lbl = utility_panel_node.find_child("UtilityDescLabel", true, false) as Label
+	if is_instance_valid(desc_lbl):
+		desc_lbl.text = "Herramientas de diagnóstico y rendimiento:" if is_es else "Diagnostic and performance tools:"
+
+	var bench_btn = utility_panel_node.find_child("UtilityBenchmarkButton", true, false) as Button
+	if is_instance_valid(bench_btn):
+		bench_btn.text = "Benchmark Plugin"
+
+
+func _on_utility_button_pressed() -> void:
+	_setup_utility_panel()
+	if is_instance_valid(utility_panel_node):
+		utility_panel_node.visible = !utility_panel_node.visible
+		if utility_panel_node.visible:
+			var sm: Control = null
+			if has_node("%SocialIconsContainer"):
+				sm = get_node("%SocialIconsContainer").find_child("SocialMedia", true, false) as Control
+			if sm == null and is_inside_tree():
+				var sm_list = get_tree().get_nodes_in_group("social_media")
+				if sm_list.size() > 0:
+					sm = sm_list[0] as Control
+
+			if is_instance_valid(sm):
+				var sm_rect = sm.get_global_rect()
+				utility_panel_node.global_position = Vector2(sm_rect.position.x + sm_rect.size.x + 15, sm_rect.position.y)
+			else:
+				var util_btn = get_node_or_null("%UtilityButton") as Button
+				if is_instance_valid(util_btn):
+					var btn_rect = util_btn.get_global_rect()
+					utility_panel_node.global_position = Vector2(btn_rect.position.x - 100, btn_rect.position.y - 250)
+				else:
+					utility_panel_node.global_position = Vector2(size.x - 340, 80)
+			clamp_control_inside_window(utility_panel_node)
+
+
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_RESIZED:
 		call_deferred("_apply_panning_and_clamping")
@@ -369,6 +529,7 @@ func _notification(what: int) -> void:
 		is_panning = false
 		is_dragging_setting_resource = false
 		is_dragging_info_panel = false
+		is_dragging_utility_panel = false
 
 
 func _on_main_view_resized() -> void:
@@ -385,7 +546,23 @@ func _input(event: InputEvent) -> void:
 			var view_rect = get_global_rect()
 
 			if event.pressed:
-				# 0. Drag InfoSummaryPanel window independently
+				# 0. Drag UtilitySummaryPanel window independently
+				if is_instance_valid(utility_panel_node) and utility_panel_node.visible:
+					var util_rect = utility_panel_node.get_global_rect()
+					if util_rect.has_point(click_pos):
+						var hover = get_viewport().gui_get_hovered_control()
+						if is_instance_valid(hover) and hover is BaseButton and (hover.text == "✖" or hover.name == "UtilityBenchmarkButton"):
+							is_panning = false
+							is_dragging_utility_panel = false
+							return
+
+						is_dragging_utility_panel = true
+						drag_utility_panel_offset = click_pos - utility_panel_node.global_position
+						is_panning = false
+						get_viewport().set_input_as_handled()
+						return
+
+				# 1. Drag InfoSummaryPanel window independently
 				if is_instance_valid(info_panel_node) and info_panel_node.visible:
 					var info_rect = info_panel_node.get_global_rect()
 					if info_rect.has_point(click_pos):
@@ -401,7 +578,7 @@ func _input(event: InputEvent) -> void:
 						get_viewport().set_input_as_handled()
 						return
 
-				# 1. Drag SettingResource window independently
+				# 2. Drag SettingResource window independently
 				if is_instance_valid(setting_resource_node) and setting_resource_node.visible:
 					var sr_rect = setting_resource_node.get_global_rect()
 					if sr_rect.has_point(click_pos):
@@ -419,7 +596,7 @@ func _input(event: InputEvent) -> void:
 						get_viewport().set_input_as_handled()
 						return
 
-				# 2. Canvas panning on background
+				# 3. Canvas panning on background
 				if view_rect.has_point(click_pos):
 					if _is_clicking_interactive_control():
 						is_panning = false
@@ -436,6 +613,7 @@ func _input(event: InputEvent) -> void:
 			else:
 				is_dragging_setting_resource = false
 				is_dragging_info_panel = false
+				is_dragging_utility_panel = false
 				is_panning = false
 
 	elif event is InputEventMouseMotion:
@@ -443,9 +621,15 @@ func _input(event: InputEvent) -> void:
 			is_panning = false
 			is_dragging_setting_resource = false
 			is_dragging_info_panel = false
+			is_dragging_utility_panel = false
 			return
 
-		if is_dragging_info_panel and is_instance_valid(info_panel_node):
+		if is_dragging_utility_panel and is_instance_valid(utility_panel_node):
+			utility_panel_node.global_position = event.global_position - drag_utility_panel_offset
+			clamp_control_inside_window(utility_panel_node)
+			get_viewport().set_input_as_handled()
+
+		elif is_dragging_info_panel and is_instance_valid(info_panel_node):
 			info_panel_node.global_position = event.global_position - drag_info_panel_offset
 			clamp_control_inside_window(info_panel_node)
 			get_viewport().set_input_as_handled()
@@ -473,8 +657,8 @@ func _is_clicking_interactive_control() -> bool:
 		return false
 	var hover = get_viewport().gui_get_hovered_control()
 	if is_instance_valid(hover):
-		# If clicking inside SettingResource, TextEditOption, or MainViewManager: DO NOT pan canvas!
-		if _is_node_or_ancestor_equal(hover, setting_resource_node) or _is_node_or_ancestor_equal(hover, text_edit_main) or _is_node_or_ancestor_equal(hover, main_view_manager):
+		# If clicking inside SettingResource, TextEditOption, MainViewManager, InfoPanel, or UtilityPanel: DO NOT pan canvas!
+		if _is_node_or_ancestor_equal(hover, setting_resource_node) or _is_node_or_ancestor_equal(hover, text_edit_main) or _is_node_or_ancestor_equal(hover, main_view_manager) or _is_node_or_ancestor_equal(hover, info_panel_node) or _is_node_or_ancestor_equal(hover, utility_panel_node):
 			return true
 
 		if hover is BaseButton or hover is Button or hover is LineEdit or hover is SpinBox or hover is OptionButton or hover is TextEdit or hover is CheckButton:
@@ -497,11 +681,6 @@ func _is_node_or_ancestor_equal(node: Node, target: Node) -> bool:
 	return false
 
 
-func _on_banner_image_gui_input(event: InputEvent) -> void:
-	pass
-
-
-
 
 func _apply_panning_and_clamping() -> void:
 	var view_size = size
@@ -520,9 +699,6 @@ func _apply_panning_and_clamping() -> void:
 	if is_instance_valid(bg_center_container):
 		bg_center_container.position = pan_offset
 
-	if is_instance_valid(social_icons_container):
-		social_icons_container.position = pan_offset
-
 	if is_instance_valid(margin_container):
 		margin_container.position = pan_offset
 
@@ -534,6 +710,8 @@ func _apply_panning_and_clamping() -> void:
 func clamp_all_popups() -> void:
 	clamp_control_inside_window(setting_resource_node)
 	clamp_control_inside_window(text_edit_main)
+	clamp_control_inside_window(info_panel_node)
+	clamp_control_inside_window(utility_panel_node)
 
 
 func clamp_control_inside_window(node: Control) -> void:
@@ -545,12 +723,12 @@ func clamp_control_inside_window(node: Control) -> void:
 		return
 
 	var node_rect = node.get_global_rect()
-	var margin = 10.0
+	var margin = 6.0
 
 	var min_x = view_rect.position.x + margin
-	var max_x = view_rect.position.x + view_rect.size.x - node_rect.size.x - margin
+	var max_x = view_rect.position.x + max(0.0, view_rect.size.x - node_rect.size.x - margin)
 	var min_y = view_rect.position.y + margin
-	var max_y = view_rect.position.y + view_rect.size.y - node_rect.size.y - margin
+	var max_y = view_rect.position.y + max(0.0, view_rect.size.y - node_rect.size.y - margin)
 
 	if max_x < min_x:
 		max_x = min_x
@@ -573,7 +751,6 @@ func update_plugin()->void:
 		setting_resource.set("main_view", self)
 
 	res_prop = ResProperty.new()
-#	game_debugger_singleton = GameDebugger
 #	var loaded_res = load_resources_from_user()
 #	setting_resource.load_res(loaded_res)
 	project_settings_debug._set_up_settings()
@@ -794,3 +971,56 @@ func _on_reload_button_pressed() -> void:
 				EditorInterface.call_deferred("set_main_screen_editor", "GameDebugger")
 			return
 	update_plugin()
+
+
+func _on_benchmark_button_pressed() -> void:
+	run_plugin_benchmark()
+
+
+func run_plugin_benchmark() -> void:
+	var t_start = Time.get_ticks_usec()
+	
+	# 1. Measure node references & state setup
+	var t_nodes_0 = Time.get_ticks_usec()
+	setting_resource_node = $SettingCreatorContainer/SettingResourceManager/SettingResource
+	project_settings_debug = $ProjectSettingsDebug
+	main_view_manager = $MainCenterContainer/MainViewManager
+	main_center_container = %MainCenterContainer
+	text_edit_main = $SettingCreatorContainer/SettingResourceManager/TextEditOption
+	if is_instance_valid(setting_resource) and "main_view" in setting_resource:
+		setting_resource.set("main_view", self)
+	res_prop = ResProperty.new()
+	var t_nodes_ms = (Time.get_ticks_usec() - t_nodes_0) / 1000.0
+	
+	# 2. Measure ProjectSettings setup & parsing
+	var t_proj_0 = Time.get_ticks_usec()
+	if is_instance_valid(project_settings_debug):
+		project_settings_debug._set_up_settings()
+	var t_proj_ms = (Time.get_ticks_usec() - t_proj_0) / 1000.0
+	
+	# 3. Measure UI Options dynamic creation & update
+	var t_mvm_0 = Time.get_ticks_usec()
+	if is_instance_valid(main_view_manager):
+		main_view_manager.main_view = self
+		main_view_manager.update_settings()
+	var t_mvm_ms = (Time.get_ticks_usec() - t_mvm_0) / 1000.0
+	
+	# 4. Measure Language & Localization pass
+	var t_lang_0 = Time.get_ticks_usec()
+	apply_language(current_language)
+	var t_lang_ms = (Time.get_ticks_usec() - t_lang_0) / 1000.0
+	
+	var total_bench_ms = (Time.get_ticks_usec() - t_start) / 1000.0
+	
+	print_rich("\n[color=orange]==================================================[/color]")
+	print_rich("[color=orange]   GAMEDEBUGGER PLUGIN BENCHMARK (EDITOR REBUILD) [/color]")
+	print_rich("[color=orange]   [Notice: Measuring Editor UI / NOT Gameplay]   [/color]")
+	print_rich("[color=orange]   [Note: This plugin only runs at the editor level] (0.000 ms gameplay impact)[/color]")
+	print_rich("[color=orange]==================================================[/color]")
+	print_rich("[color=orange][BENCHMARK] [GameDebugger] Node References & State:     %.3f ms[/color] [color=light_blue](%.6f s)[/color]" % [t_nodes_ms, t_nodes_ms / 1000.0])
+	print_rich("[color=orange][BENCHMARK] [GameDebugger] ProjectSettings Parsing:     %.3f ms[/color] [color=light_blue](%.6f s)[/color]" % [t_proj_ms, t_proj_ms / 1000.0])
+	print_rich("[color=orange][BENCHMARK] [GameDebugger] UI Options Generation:       %.3f ms[/color] [color=light_blue](%.6f s)[/color]" % [t_mvm_ms, t_mvm_ms / 1000.0])
+	print_rich("[color=orange][BENCHMARK] [GameDebugger] Localization Pass:            %.3f ms[/color] [color=light_blue](%.6f s)[/color]" % [t_lang_ms, t_lang_ms / 1000.0])
+	print_rich("[color=orange]--------------------------------------------------[/color]")
+	print_rich("[color=orange][BENCHMARK] >> TOTAL EDITOR PLUGIN REBUILD: %.3f ms[/color] [color=light_blue](%.6f s)[/color] [color=orange]<<[/color]" % [total_bench_ms, total_bench_ms / 1000.0])
+	print_rich("[color=orange]==================================================[/color]\n")

@@ -99,15 +99,15 @@ func update_settings() -> void:
 
 
 func _update_settings_ui() -> void:
-	if h_box_container:
+	if is_instance_valid(h_box_container):
 		for child in h_box_container.get_children():
 			if is_instance_valid(child):
-				child.queue_free()
+				h_box_container.remove_child(child)
+				child.free()
 
 	if not is_instance_valid(main_view):
 		return
 
-	var pending_array_settings: Array = []
 	var added_setting_names: Dictionary = {}
 
 	# 1. Add settings in the exact saved order of main_view.current_settings
@@ -177,9 +177,9 @@ var active_drag_preview: Control = null
 var active_drag_from_index: int = -1
 
 
-var bool_normal_style: StyleBoxFlat
-var bool_hover_style: StyleBoxFlat
-var bool_pressed_style: StyleBoxFlat
+static var bool_normal_style: StyleBoxFlat = null
+static var bool_hover_style: StyleBoxFlat = null
+static var bool_pressed_style: StyleBoxFlat = null
 
 
 func setup_unified_button_styles() -> void:
@@ -262,17 +262,15 @@ func _add_drag_handle_to_option(option: Control) -> void:
 	if option.has_method("add_delete_button"):
 		option.add_delete_button()
 
-	_connect_drag_recursive(option, option)
+	_connect_drag(option)
 
 
-
-func _connect_drag_recursive(node: Node, target_option: Control) -> void:
-	if node is Control:
-		var ctrl = node as Control
-		if not ctrl.gui_input.is_connected(_on_option_gui_input.bind(target_option)):
-			ctrl.gui_input.connect(_on_option_gui_input.bind(target_option))
-	for child in node.get_children():
-		_connect_drag_recursive(child, target_option)
+func _connect_drag(option: Control) -> void:
+	if not option.gui_input.is_connected(_on_option_gui_input.bind(option)):
+		option.gui_input.connect(_on_option_gui_input.bind(option))
+	var handle = option.get_node_or_null("DragHandle") as Control
+	if is_instance_valid(handle) and not handle.gui_input.is_connected(_on_option_gui_input.bind(option)):
+		handle.gui_input.connect(_on_option_gui_input.bind(option))
 
 
 
@@ -465,21 +463,17 @@ func _add_string_option(setting_name: String, prop: Dictionary) -> void:
 	var extract_items = func(hs):
 		if hs is String and hs != "":
 			for s in hs.split(","):
-				if s.strip_edges() != "" and not hint_items.has(s.strip_edges()):
-					hint_items.append(s.strip_edges())
+				var item = s.strip_edges()
+				if item != "" and not hint_items.has(item):
+					hint_items.append(item)
 		elif hs is Array or hs is PackedStringArray:
 			for s in hs:
-				if str(s).strip_edges() != "" and not hint_items.has(str(s).strip_edges()):
-					hint_items.append(str(s).strip_edges())
+				var item = str(s).strip_edges()
+				if item != "" and not hint_items.has(item):
+					hint_items.append(item)
 
-	if "hint_string" in prop:
+	if prop != null and "hint_string" in prop:
 		extract_items.call(prop["hint_string"])
-
-	if hint_items.is_empty():
-		for p in ProjectSettings.get_property_list():
-			if p.name == setting_name and "hint_string" in p:
-				extract_items.call(p["hint_string"])
-				break
 
 	if hint_items.is_empty() and is_instance_valid(main_view):
 		for cs in main_view.current_settings:

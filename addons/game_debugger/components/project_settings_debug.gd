@@ -12,22 +12,25 @@ func _set_up_settings() -> void:
 
 func update_settings():
 	main_view = get_owner()
-	var settings_resources = main_view.load_resources_from_user()
+	var settings_resources = main_view.load_resources_from_user() if is_instance_valid(main_view) else []
+	var has_changes: bool = false
 	
 	# Register settings
 	for s in settings_resources:
-#		print("settings projec", s.name)
-		if s.name == "" or s.name.ends_with("/"): # skip invalid names
+		if s == null or s.name == "" or s.name.ends_with("/"): # skip invalid names
 			continue
 		s.update_default_value()
-		add_project_setting(s.name, s)
+		if add_project_setting(s.name, s):
+			has_changes = true
 
-	ProjectSettings.save()
+	if has_changes:
+		ProjectSettings.save()
 
 
-func add_project_setting(setting_name: String, setting_) -> void:
+func add_project_setting(setting_name: String, setting_) -> bool:
 	var current_value
 	var hint_str: String = ""
+	var is_new: bool = false
 
 	# --- Get or set default value ---
 	if ProjectSettings.has_setting(setting_name):
@@ -43,6 +46,7 @@ func add_project_setting(setting_name: String, setting_) -> void:
 
 		ProjectSettings.set_setting(setting_name, current_value)
 		ProjectSettings.set_initial_value(setting_name, current_value)
+		is_new = true
 
 	# --- Hint string handling ---
 	if setting_.type == TYPE_PACKED_STRING_ARRAY:
@@ -61,3 +65,4 @@ func add_project_setting(setting_name: String, setting_) -> void:
 	}
 
 	ProjectSettings.add_property_info(property_info)
+	return is_new
